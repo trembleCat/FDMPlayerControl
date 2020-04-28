@@ -15,20 +15,12 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        let item = FDMPlayerButtonItem(image: UIImage(named: "avcPromptWarning")!, target: self, selector: #selector(self.clickItem))
-        let v = FDMPlayerBottomView(itemAry: [])
-        v.backgroundColor = .cyan
+        let v = FDMPlayerBottomBarControl(barStyle: .ShortVideo)
         self.view.addSubview(v)
         v.snp.makeConstraints { (make) in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(49)
         }
-        
-        v.itemAry = [item]
-    }
-    
-    @objc func clickItem() {
-        print("1111111")
     }
 }
 
