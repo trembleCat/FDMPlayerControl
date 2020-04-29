@@ -12,22 +12,38 @@ import UIKit
 class ImageConfig: NSObject {
     static let shared = ImageConfig()
     
-    /// 播放
-    let player_start = "player_start"
+    //MARK: DefaultVideo
+    
     /// 暂停
-    let player_suspend = "player_suspend"
-    /// 音量
-    let player_speak = "player_speak"
-    /// 返回
-    let player_back = "player_back"
-    /// 屏幕中心播放
-    let player_fullplay = "player_fullplay"
-    /// 更多
-    let player_more = "player_more"
-    /// 滑块按钮
+    let defaultVideo_all_pause = "defaultVideo_all_pause"
+    /// 播放
+    let defaultVideo_all_play = "defaultVideo_all_play"
+    /// 全屏
+    let defaultVideo_all_Screen = "defaultVideo_all_Screen"
+    /// 底部阴影
+    let defaultVideo_bottomShadow = "defaultVideo_bottomShadow"
+    /// 亮度标识
+    let defaultVideo_bright = "defaultVideo_bright"
+    /// 全屏状态返回
+    let defaultVideo_full_back = "defaultVideo_full_back"
+    /// 全屏状态滑块
+    let defaultVideo_full_slider = "defaultVideo_full_slider"
+    /// 缩小状态返回
+    let defaultVideo_mini_back = "defaultVideo_mini_back"
+    /// 缩小状态滑块
+    let defaultVideo_mini_slider = "defaultVideo_mini_slider"
+    /// 全屏中心暂停
+    let defaultVideo_center_pause = "defaultVideo_center_pause"
+    /// 全屏中心播放
+    let defaultVideo_center_play = "defaultVideo_center_play"
+    /// 顶部阴影
+    let defaultVideo_topShadow = "defaultVideo_topShadow"
+    
+    
+    //MARK: PublicVideo
+    
+    /// Thumb
     let player_thumb = "player_thumb"
-    /// min滑块按钮
-    let player_thumbMin = "player_thumbMin"
     /// 信号量1
     let player_volum1 = "player_volum1"
     /// 信号量2

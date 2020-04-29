@@ -11,6 +11,9 @@ import UIKit
 //MARK: Bar控制器 一排最多支持一个自适应Item
 class FDMPlayerBarControl: UIView {
     
+    /// 背景View
+    var backgroundView: UIView?
+    
     /// item间距
     var itemSpacing: CGFloat = 10 {
         didSet{
@@ -34,6 +37,8 @@ class FDMPlayerBarControl: UIView {
     init(itemAry: [FDMControlItem]) {
         self.itemAry = itemAry
         super.init(frame: CGRect.zero)
+        
+        refreshLayoutItems()
     }
     
     required init?(coder: NSCoder) {
@@ -51,6 +56,13 @@ extension FDMPlayerBarControl {
     final func createUI() {
         for subview in subviews {
             subview.removeFromSuperview()
+        }
+        
+        if backgroundView != nil {
+            self.addSubview(backgroundView!)
+            backgroundView?.snp.makeConstraints({ (make) in
+                make.left.right.bottom.top.equalToSuperview()
+            })
         }
         
         for item in itemAry ?? [] {
@@ -78,20 +90,19 @@ extension FDMPlayerBarControl {
         let isEndItem = itemAry?.count ?? 0 > (count + 1)   // 是否最后一个item
         let previousView = previousItem?.customItem // 上一个item.view
         
-        let markRight = isEndItem ? itemAry![count + 1].customItem.snp.left : self.snp.right    // 当前view对于下一个item.view的布局
-        let markRightOffset = isEndItem ? -itemSpacing : -itemSpacing * 2 // 相对于下一个item的间距
+        let markRight = isEndItem ? itemAry![count + 1].customItem.snp.left : self.snp.right    // 当前view对于下一个item.view的布局 t
         
         if count == 0 {
             if item.itemType == .AutoItem {  //第一个 - 自适应
                 currentItem.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(itemSpacing * 2)
+                    make.left.equalToSuperview().offset(itemSpacing)
                     make.centerY.equalToSuperview()
-                    make.right.equalTo(markRight).offset(markRightOffset)
+                    make.right.equalTo(markRight).offset(-itemSpacing)
                     make.height.equalTo(currentItemSize.height)
                 }
             }else { //第一个 - 固定
                 currentItem.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(itemSpacing * 2)
+                    make.left.equalToSuperview().offset(itemSpacing)
                     make.centerY.equalToSuperview()
                     make.height.equalTo(currentItemSize.height)
                     make.width.equalTo(currentItemSize.width)
@@ -102,7 +113,7 @@ extension FDMPlayerBarControl {
                 currentItem.snp.makeConstraints { (make) in
                     make.left.equalTo(previousView!.snp.right).offset(itemSpacing)
                     make.centerY.equalToSuperview()
-                    make.right.equalToSuperview().offset(-itemSpacing * 2)
+                    make.right.equalToSuperview().offset(-itemSpacing)
                     make.height.equalTo(currentItemSize.height)
                 }
             }else { // 最后一个 - 固定
@@ -113,7 +124,7 @@ extension FDMPlayerBarControl {
                     make.width.equalTo(currentItemSize.width)
                     
                     if isAutoItem {
-                        make.right.equalToSuperview().offset(-itemSpacing * 2)
+                        make.right.equalToSuperview().offset(-itemSpacing)
                     }
                 }
             }
@@ -122,7 +133,7 @@ extension FDMPlayerBarControl {
                 currentItem.snp.makeConstraints { (make) in
                     make.left.equalTo(previousView!.snp.right).offset(itemSpacing)
                     make.centerY.equalToSuperview()
-                    make.right.equalTo(markRight).offset(markRightOffset)
+                    make.right.equalTo(markRight).offset(-itemSpacing)
                     make.height.equalTo(currentItemSize.height)
                 }
             }else { // 中间 - 固定
