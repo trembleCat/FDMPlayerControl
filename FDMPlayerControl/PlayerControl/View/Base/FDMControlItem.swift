@@ -26,6 +26,14 @@ class FDMControlItem: NSObject {
     /// Item的类型 - 自适应宽高/固定宽高
     var itemType: FDMControlItemType
     
+    /// 全屏回调
+    var fullScreenBlock: ((UIView)->())?
+    /// 小屏回调
+    var smallScreenBlock: ((UIView)->())?
+    
+    /// 是否全屏
+    var isFullScreen = false
+    
     private let fullScreenName = "FDMControlFullScreen"
     private let smallScreenName = "FDMControlSmallScreen"
     
@@ -37,112 +45,20 @@ class FDMControlItem: NSObject {
         self.createAction()
     }
     
-    func createAction() {
+    private func createAction() {
         NotificationCenter.default.addObserver(self, selector: #selector(fullScreenAction), name: NSNotification.Name.init(fullScreenName), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(smallScreenAction), name: NSNotification.Name.init(smallScreenName), object: nil)
     }
     
     /// 全屏时进行的操作
-    @objc func fullScreenAction() {
-        
+    @objc private func fullScreenAction() {
+        isFullScreen = true
+        fullScreenBlock?(customItem)
     }
     
     /// 小屏时进行的操作
-    @objc func smallScreenAction() {
-        
-    }
-}
-
-//MARK: ButtonItem
-
-class FDMControlButtonItem: FDMControlItem {
-    let buttonItem = UIButton()
-    
-    var fullScreenBlock: ((UIButton)->())?
-    var smallScreenBlock: ((UIButton)->())?
-    
-    /// ButtonItem - 初始化 - 固定Button宽高
-    init(size: CGSize) {
-        super.init(itemType: .FixedItem, customItem: buttonItem)
-        self.itemSize = size
-    }
-    
-    /// ButtonItem - 初始化 - 固定Button宽高
-    init(image: UIImage, size: CGSize, target: Any, selector: Selector) {
-        super.init(itemType: .FixedItem, customItem: buttonItem)
-        
-        buttonItem.setImage(image, for: .normal)
-        buttonItem.addTarget(target, action: selector, for: .touchUpInside)
-        self.itemSize = size
-    }
-    
-    /// ButtonItem - 初始化 - 固定或自适应Button
-    init(title: String, size: CGSize?, titleColor: UIColor, target: Any, selector: Selector) {
-        super.init(itemType: .FixedItem, customItem: buttonItem)
-        
-        buttonItem.setTitle(title, for: .normal)
-        buttonItem.setTitleColor(titleColor, for: .normal)
-        buttonItem.addTarget(target, action: selector, for: .touchUpInside)
-        
-        if size == nil {
-            buttonItem.sizeToFit()
-            self.itemSize = buttonItem.bounds.size
-        }else{
-            self.itemSize = size!
-        }
-    }
-    
-    override func fullScreenAction() {
-        fullScreenBlock?(buttonItem)
-    }
-    
-    override func smallScreenAction() {
-        smallScreenBlock?(buttonItem)
-    }
-}
-
-//MARK: SpaceItem
-class FDMControlSpaceItem: FDMControlItem {
-    let spaceItem = UIView()
-    
-    /// SpaceItem - 初始化 - 固定间距宽高
-    init(size: CGSize) {
-        super.init(itemType: .FixedItem, customItem: spaceItem)
-        
-        self.itemSize = size
-    }
-    
-    /// SpaceItem - 初始化 - 自适应间距宽度
-    init(autoSpaceHeight height: CGFloat) {
-        super.init(itemType: .AutoItem, customItem: spaceItem)
-        
-        self.itemSize = CGSize(width: 0, height: height)
-    }
-}
-
-//MARK: ProgressItem
-class FDMControlProgressItem: FDMControlItem {
-    let progressItem = UISlider()
-    
-    var fullScreenBlock: ((UISlider)->())?
-    var smallScreenBlock: ((UISlider)->())?
-    
-    enum ProgressType {
-        case DefaultVideo
-        case ShortVideo
-    }
-    
-    /// ProgressItem - 初始化 - 自适应Progress宽度
-    init(progressHeight height: CGFloat) {
-        super.init(itemType: .AutoItem, customItem: progressItem)
-        self.itemSize = CGSize(width: 0, height: height)
-    }
-    
-    override func fullScreenAction() {
-        fullScreenBlock?(progressItem)
-    }
-    
-    override func smallScreenAction() {
-        smallScreenBlock?(progressItem)
+    @objc private func smallScreenAction() {
+        isFullScreen = false
+        smallScreenBlock?(customItem)
     }
 }

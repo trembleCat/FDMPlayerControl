@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "center_pause_control_iphone_50x50_@2x.png",
+      "filename" : "brightness_bg_iphone_310x310_@1x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "center_pause_control_iphone_50x50_@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

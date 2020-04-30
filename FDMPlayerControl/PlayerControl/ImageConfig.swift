@@ -19,11 +19,15 @@ class ImageConfig: NSObject {
     /// 播放
     let defaultVideo_all_play = "defaultVideo_all_play"
     /// 全屏
-    let defaultVideo_all_Screen = "defaultVideo_all_Screen"
+    let defaultVideo_all_screen = "defaultVideo_all_screen"
+    /// 取消全屏
+    let defaultVideo_all_unScreen = "defaultVideo_all_unScreen"
     /// 底部阴影
     let defaultVideo_bottomShadow = "defaultVideo_bottomShadow"
     /// 亮度标识
     let defaultVideo_bright = "defaultVideo_bright"
+    /// 中心亮度标识
+    let defaultVideo_center_bright = "defaultVideo_center_bright"
     /// 全屏状态返回
     let defaultVideo_full_back = "defaultVideo_full_back"
     /// 全屏状态滑块
@@ -38,6 +42,8 @@ class ImageConfig: NSObject {
     let defaultVideo_center_play = "defaultVideo_center_play"
     /// 顶部阴影
     let defaultVideo_topShadow = "defaultVideo_topShadow"
+    /// 关闭
+    let defaultVideo_close = "defaultVideo_close"
     
     
     //MARK: PublicVideo
@@ -54,4 +60,6 @@ class ImageConfig: NSObject {
     let player_volum4 = "player_volum4"
     /// 信号量5
     let player_volum5 = "player_volum5"
+    /// WiFi标识
+    let player_statusBar_WIFI = "player_statusBar_WIFI"
 }

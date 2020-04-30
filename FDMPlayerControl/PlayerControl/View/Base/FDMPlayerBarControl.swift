@@ -12,7 +12,11 @@ import UIKit
 class FDMPlayerBarControl: UIView {
     
     /// 背景View
-    var backgroundView: UIView?
+    var backgroundView: UIView? {
+        didSet{
+            self.insertSubview(backgroundView!, at: 0)
+        }
+    }
     
     /// item间距
     var itemSpacing: CGFloat = 10 {
@@ -55,14 +59,11 @@ class FDMPlayerBarControl: UIView {
 extension FDMPlayerBarControl {
     final func createUI() {
         for subview in subviews {
+            if subview == backgroundView {
+                continue
+            }
+            
             subview.removeFromSuperview()
-        }
-        
-        if backgroundView != nil {
-            self.addSubview(backgroundView!)
-            backgroundView?.snp.makeConstraints({ (make) in
-                make.left.right.bottom.top.equalToSuperview()
-            })
         }
         
         for item in itemAry ?? [] {
@@ -112,8 +113,8 @@ extension FDMPlayerBarControl {
             if item.itemType == .AutoItem { // 最后一个 - 自适应
                 currentItem.snp.makeConstraints { (make) in
                     make.left.equalTo(previousView!.snp.right).offset(itemSpacing)
-                    make.centerY.equalToSuperview()
                     make.right.equalToSuperview().offset(-itemSpacing)
+                    make.centerY.equalToSuperview()
                     make.height.equalTo(currentItemSize.height)
                 }
             }else { // 最后一个 - 固定
@@ -145,5 +146,14 @@ extension FDMPlayerBarControl {
                 }
             }
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutIfNeeded()
+        
+        guard backgroundView != nil else {return}
+        backgroundView?.snp.makeConstraints({ (make) in
+            make.left.right.bottom.top.equalToSuperview()
+        })
     }
 }

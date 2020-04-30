@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */; };
 		1805C9142456CDF300254818 /* FDMControlItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805C9132456CDF300254818 /* FDMControlItem.swift */; };
-		184B250F24581D2900C2772A /* FDMQuick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B250E24581D2900C2772A /* FDMQuick.swift */; };
+		184385F5245A69AE008EE5E2 /* FDMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184385F4245A69AE008EE5E2 /* FDMExtension.swift */; };
+		184385FB245AA45A008EE5E2 /* FDMControlCustomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */; };
 		184B253C24582F3F00C2772A /* PlayerImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184B253B24582F3F00C2772A /* PlayerImage.xcassets */; };
 		184B253E2458304400C2772A /* ImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B253D2458304400C2772A /* ImageConfig.swift */; };
 		185BBE5A2456AB280093DF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BBE592456AB280093DF12 /* AppDelegate.swift */; };
@@ -24,7 +25,8 @@
 /* Begin PBXFileReference section */
 		1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerBarControl.swift; sourceTree = "<group>"; };
 		1805C9132456CDF300254818 /* FDMControlItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMControlItem.swift; sourceTree = "<group>"; };
-		184B250E24581D2900C2772A /* FDMQuick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMQuick.swift; sourceTree = "<group>"; };
+		184385F4245A69AE008EE5E2 /* FDMExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMExtension.swift; sourceTree = "<group>"; };
+		184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMControlCustomItem.swift; sourceTree = "<group>"; };
 		184B253B24582F3F00C2772A /* PlayerImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PlayerImage.xcassets; sourceTree = "<group>"; };
 		184B253D2458304400C2772A /* ImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfig.swift; sourceTree = "<group>"; };
 		185BBE562456AB280093DF12 /* FDMPlayerControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FDMPlayerControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,6 +61,7 @@
 				18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */,
 				1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */,
 				1805C9132456CDF300254818 /* FDMControlItem.swift */,
+				184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -84,6 +87,7 @@
 		185BBE582456AB280093DF12 /* FDMPlayerControl */ = {
 			isa = PBXGroup;
 			children = (
+				184385F4245A69AE008EE5E2 /* FDMExtension.swift */,
 				185BBE6D2456AB8C0093DF12 /* PlayerControl */,
 				185BBE592456AB280093DF12 /* AppDelegate.swift */,
 				185BBE5D2456AB280093DF12 /* ViewController.swift */,
@@ -91,7 +95,6 @@
 				185BBE622456AB280093DF12 /* Assets.xcassets */,
 				185BBE642456AB280093DF12 /* LaunchScreen.storyboard */,
 				185BBE672456AB280093DF12 /* Info.plist */,
-				184B250E24581D2900C2772A /* FDMQuick.swift */,
 			);
 			path = FDMPlayerControl;
 			sourceTree = "<group>";
@@ -257,12 +260,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C09D282459303E00C29D3A /* FDMPlayerGestureControl.swift in Sources */,
+				184385F5245A69AE008EE5E2 /* FDMExtension.swift in Sources */,
 				1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */,
 				1805C9142456CDF300254818 /* FDMControlItem.swift in Sources */,
-				184B250F24581D2900C2772A /* FDMQuick.swift in Sources */,
 				184B253E2458304400C2772A /* ImageConfig.swift in Sources */,
 				185BBE5E2456AB280093DF12 /* ViewController.swift in Sources */,
 				185BBE5A2456AB280093DF12 /* AppDelegate.swift in Sources */,
+				184385FB245AA45A008EE5E2 /* FDMControlCustomItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
