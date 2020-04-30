@@ -41,16 +41,14 @@ extension FDMPlayerGestureControl {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        topBarControl?.snp.makeConstraints({ (make) in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
-            make.height.equalTo(isFullScreen ? fullBarHeight + 20 : smallBarHeight)
+        bottomBarControl?.snp.makeConstraints({ (make) in
+            make.left.right.bottom.equalTo(self)
+            make.height.equalTo(isFullScreen ? fullBarHeight : smallBarHeight)
         })
         
-        bottomBarControl?.snp.makeConstraints({ (make) in
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
-            make.height.equalTo(isFullScreen ? fullBarHeight : smallBarHeight)
+        topBarControl?.snp.makeConstraints({ (make) in
+            make.left.right.top.equalTo(self)
+            make.height.equalTo(isFullScreen ? fullBarHeight + 20 : smallBarHeight)
         })
     }
 }

@@ -51,6 +51,9 @@ class FDMPlayerBarControl: UIView {
     
     /// 刷新Items布局
     func refreshLayoutItems() {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        
+        guard itemAry?.count ?? 0 > 0  else {return}
         createUI()
     }
 }
@@ -67,6 +70,7 @@ extension FDMPlayerBarControl {
         }
         
         for item in itemAry ?? [] {
+
             self.addSubview(item.customItem)
         }
         
@@ -75,9 +79,9 @@ extension FDMPlayerBarControl {
         var previousItem: FDMControlItem?
         
         for item in itemAry ?? [] {
+            isAutoItem = item.itemType == .AutoItem ? true : isAutoItem
             layoutItems(item: item, previousItem: previousItem, count: i, isAutoItem: isAutoItem)
             previousItem = item
-            isAutoItem = item.itemType == .AutoItem ? true : isAutoItem
             
             i += 1
         }
@@ -98,7 +102,7 @@ extension FDMPlayerBarControl {
                 currentItem.snp.makeConstraints { (make) in
                     make.left.equalToSuperview().offset(itemSpacing)
                     make.centerY.equalToSuperview()
-                    make.right.equalTo(markRight).offset(-itemSpacing)
+                    make.right.equalToSuperview().offset(-itemSpacing)
                     make.height.equalTo(currentItemSize.height)
                 }
             }else { //第一个 - 固定

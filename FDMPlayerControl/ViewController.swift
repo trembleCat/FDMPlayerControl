@@ -61,8 +61,7 @@ extension ViewController: UIDocumentPickerDelegate {
         let fullItem = FDMControlButtonItem(image: fullItemImage, size: fullItemSize, target: self, selector: #selector(self.clickFullItem(_:)))
         
         /* Bar */
-        let bottomBar = FDMPlayerBarControl()
-        bottomBar.itemAry = [space]
+        let bottomBar = FDMPlayerBarControl(itemAry: [playItem,progressItem,timeItem,fullItem])
 //        bottomBar.backgroundView = UIImageView(image: UIImage(named: ImageConfig.shared.defaultVideo_bottomShadow))
         
         let gestureControl = FDMPlayerGestureControl()
@@ -72,7 +71,6 @@ extension ViewController: UIDocumentPickerDelegate {
         gestureControl.snp.makeConstraints { (make) in
             make.left.right.bottom.top.equalToSuperview()
         }
-        
     }
     
     /// 点击播放
