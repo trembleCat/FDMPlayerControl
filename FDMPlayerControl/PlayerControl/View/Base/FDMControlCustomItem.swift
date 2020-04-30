@@ -9,31 +9,36 @@
 import UIKit
 
 //MARK: ButtonItem
+
 class FDMControlButtonItem: FDMControlItem {
     let buttonItem = UIButton()
+    
+    /// 点击返回Button 与 全屏状态
+    var clickButtonBlock: ((UIButton, Bool)->())?
     
     /// ButtonItem - 初始化 - 固定Button宽高
     init(size: CGSize) {
         super.init(itemType: .FixedItem, customItem: buttonItem)
+        buttonItem.addTarget(self, action: #selector(self.clickButtonItem), for: .touchUpInside)
         self.itemSize = size
     }
     
     /// ButtonItem - 初始化 - 固定Button宽高
-    init(image: UIImage, size: CGSize, target: Any, selector: Selector) {
+    init(image: UIImage, size: CGSize) {
         super.init(itemType: .FixedItem, customItem: buttonItem)
         
         buttonItem.setImage(image, for: .normal)
-        buttonItem.addTarget(target, action: selector, for: .touchUpInside)
+        buttonItem.addTarget(self, action: #selector(self.clickButtonItem), for: .touchUpInside)
         self.itemSize = size
     }
     
     /// ButtonItem - 初始化 - 固定或自适应Button
-    init(title: String, size: CGSize?, titleColor: UIColor, target: Any, selector: Selector) {
+    init(title: String, size: CGSize?, titleColor: UIColor) {
         super.init(itemType: .FixedItem, customItem: buttonItem)
         
         buttonItem.setTitle(title, for: .normal)
         buttonItem.setTitleColor(titleColor, for: .normal)
-        buttonItem.addTarget(target, action: selector, for: .touchUpInside)
+        buttonItem.addTarget(self, action: #selector(self.clickButtonItem), for: .touchUpInside)
         
         if size == nil {
             buttonItem.sizeToFit()
@@ -41,6 +46,11 @@ class FDMControlButtonItem: FDMControlItem {
         }else{
             self.itemSize = size!
         }
+    }
+    
+    /// 点击button
+    @objc func clickButtonItem() {
+        clickButtonBlock?(buttonItem,isFullScreen)
     }
 }
 

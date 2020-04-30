@@ -35,10 +35,19 @@ extension ViewController: UIDocumentPickerDelegate {
         /* Play */
         let playItemSize = CGSize(width: 25, height: 25)
         let playItemImage = UIImage(named: ImageConfig.shared.defaultVideo_all_play)!
-        let playItem = FDMControlButtonItem(image: playItemImage, size: playItemSize, target: self, selector: #selector(self.clickPlayItem(_:)))
-//        playItem.fullScreenBlock = { [weak self] sender in
-//            
-//        }
+        let playItem = FDMControlButtonItem(image: playItemImage, size: playItemSize)
+
+        playItem.clickButtonBlock = { sender , isFullScreen in
+            if sender.isSelected {
+                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_play : ImageConfig.shared.defaultVideo_all_play
+                playItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
+            }else{
+                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_pause : ImageConfig.shared.defaultVideo_all_pause
+                playItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
+            }
+            
+            sender.isSelected = !sender.isSelected
+        }
         
         
         /* progress */
@@ -58,12 +67,25 @@ extension ViewController: UIDocumentPickerDelegate {
         /* 全屏 */
         let fullItemSize = CGSize(width: 25, height: 25)
         let fullItemImage = UIImage(named: ImageConfig.shared.defaultVideo_all_screen)!
-        let fullItem = FDMControlButtonItem(image: fullItemImage, size: fullItemSize, target: self, selector: #selector(self.clickFullItem(_:)))
+        let fullItem = FDMControlButtonItem(image: fullItemImage, size: fullItemSize)
+        
+        fullItem.clickButtonBlock = { sender , isFullScreen in
+            if sender.isSelected {
+                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_screen : ImageConfig.shared.defaultVideo_all_screen
+                fullItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
+            }else{
+                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_unScreen : ImageConfig.shared.defaultVideo_all_unScreen
+                fullItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
+            }
+            
+            sender.isSelected = !sender.isSelected
+        }
         
         /* Bar */
         let bottomBar = FDMPlayerBarControl(itemAry: [playItem,progressItem,timeItem,fullItem])
-//        bottomBar.backgroundView = UIImageView(image: UIImage(named: ImageConfig.shared.defaultVideo_bottomShadow))
+        bottomBar.backgroundView = UIImageView(image: UIImage(named: ImageConfig.shared.defaultVideo_bottomShadow))
         
+        /* 手势控制器 */
         let gestureControl = FDMPlayerGestureControl()
         gestureControl.bottomBarControl = bottomBar
         
@@ -71,28 +93,6 @@ extension ViewController: UIDocumentPickerDelegate {
         gestureControl.snp.makeConstraints { (make) in
             make.left.right.bottom.top.equalToSuperview()
         }
-    }
-    
-    /// 点击播放
-    @objc func clickPlayItem(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.setImage(UIImage(named: ImageConfig.shared.defaultVideo_all_play), for: .normal)
-        }else{
-            sender.setImage(UIImage(named: ImageConfig.shared.defaultVideo_all_pause), for: .normal)
-        }
-        
-        sender.isSelected = !sender.isSelected
-    }
-    
-    /// 点击全屏
-    @objc func clickFullItem(_ sender: UIButton) {
-        if sender.isSelected {
-            sender.setImage(UIImage(named: ImageConfig.shared.defaultVideo_all_screen), for: .normal)
-        }else{
-            sender.setImage(UIImage(named: ImageConfig.shared.defaultVideo_all_unScreen), for: .normal)
-        }
-        
-        sender.isSelected = !sender.isSelected
     }
 }
 
