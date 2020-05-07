@@ -14,36 +14,46 @@ class ImageConfig: NSObject {
     
     //MARK: DefaultVideo
     
-    /// 暂停
-    let defaultVideo_all_pause = "defaultVideo_all_pause"
-    /// 播放
-    let defaultVideo_all_play = "defaultVideo_all_play"
+    /// 全屏 - 播放
+    let video_full_play = "defaultVideo_all_play"
+    /// 小屏 - 播放
+    let video_mini_play = "defaultVideo_all_play"
+
+    /// 全屏 - 暂停
+    let video_full_pause = "defaultVideo_all_pause"
+    /// 小屏 - 暂停
+    let video_mini_pause = "defaultVideo_all_pause"
+    
     /// 全屏
-    let defaultVideo_all_screen = "defaultVideo_all_screen"
+    let video_screen = "defaultVideo_all_screen"
     /// 取消全屏
-    let defaultVideo_all_unScreen = "defaultVideo_all_unScreen"
+    let video_unScreen = "defaultVideo_all_unScreen"
+    
     /// 底部阴影
-    let defaultVideo_bottomShadow = "defaultVideo_bottomShadow"
-    /// 亮度标识
-    let defaultVideo_bright = "defaultVideo_bright"
-    /// 中心亮度标识
-    let defaultVideo_center_bright = "defaultVideo_center_bright"
-    /// 全屏状态返回
-    let defaultVideo_full_back = "defaultVideo_full_back"
-    /// 全屏状态滑块
-    let defaultVideo_full_slider = "defaultVideo_full_slider"
-    /// 缩小状态返回
-    let defaultVideo_mini_back = "defaultVideo_mini_back"
-    /// 缩小状态滑块
-    let defaultVideo_mini_slider = "defaultVideo_mini_slider"
-    /// 全屏中心暂停
-    let defaultVideo_center_pause = "defaultVideo_center_pause"
-    /// 全屏中心播放
-    let defaultVideo_center_play = "defaultVideo_center_play"
+    let video_bottomShadow = "defaultVideo_bottomShadow"
     /// 顶部阴影
-    let defaultVideo_topShadow = "defaultVideo_topShadow"
+    let video_topShadow = "defaultVideo_topShadow"
+    
+    /// 全屏 - 返回
+    let video_full_back = "defaultVideo_full_back"
+    /// 小屏 - 返回
+    let video_mini_back = "defaultVideo_mini_back"
+    
+    /// 亮度标识
+    let video_bright = "defaultVideo_bright"
+    /// 中心亮度标识
+    let video_center_bright = "defaultVideo_center_bright"
+    
+    /// 全屏 - 滑块
+    let video_full_slider = "defaultVideo_full_slider"
+    /// 小屏 - 滑块
+    let video_mini_slider = "defaultVideo_mini_slider"
+    /// 全屏中心暂停
+    let video_center_pause = "defaultVideo_center_pause"
+    /// 全屏中心播放
+    let video_center_play = "defaultVideo_center_play"
     /// 关闭
-    let defaultVideo_close = "defaultVideo_close"
+    let video_close = "defaultVideo_close"
     
     
     //MARK: PublicVideo
@@ -62,4 +72,7 @@ class ImageConfig: NSObject {
     let player_volum5 = "player_volum5"
     /// WiFi标识
     let player_statusBar_WIFI = "player_statusBar_WIFI"
+    
+    /// 更多
+    let player_more = "player_more"
 }

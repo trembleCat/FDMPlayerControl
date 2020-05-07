@@ -21,7 +21,7 @@ class FDMControlItem: NSObject {
     
     /// 自定义的Item
     var customItem: UIView
-    /// Item的宽高 - 固定大小时才会调用宽度,默认为0
+    /// Item的宽高 - 固定大小时才会调用宽度,默认为10
     var itemSize = CGSize(width: 10, height: 10)
     /// Item的类型 - 自适应宽高/固定宽高
     var itemType: FDMControlItemType

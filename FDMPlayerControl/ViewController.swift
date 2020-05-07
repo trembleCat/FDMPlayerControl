@@ -12,6 +12,9 @@ import SnapKit
 class ViewController: UIViewController {
     
     let videoView = UIView()
+    let playerGestureControl = FDMPlayerGestureControl()
+    let bottomBarControl = FDMBottomBarControl(frame: .zero)
+    let topBarControl = FDMTopBarControl(frame: .zero)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,78 +24,70 @@ class ViewController: UIViewController {
         videoView.backgroundColor = .black
         videoView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.center.equalToSuperview()
+            make.top.equalToSuperview()
             make.height.equalTo(250)
         }
         
-        createBottomBarControl()
+        bottomBarControl.delegate = self
+        playerGestureControl.bottomBarControl = bottomBarControl
+        
+        topBarControl.delegate = self
+        playerGestureControl.topBarControl = topBarControl
+        
+        videoView.addSubview(playerGestureControl)
+        playerGestureControl.snp.makeConstraints { (make) in
+            make.left.right.top.bottom.equalToSuperview()
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        bottomBarControl.itemAry?.removeFirst()
     }
 }
 
-//MARK: UI
-extension ViewController: UIDocumentPickerDelegate {
-    func createBottomBarControl() {
-        /* Play */
-        let playItemSize = CGSize(width: 25, height: 25)
-        let playItemImage = UIImage(named: ImageConfig.shared.defaultVideo_all_play)!
-        let playItem = FDMControlButtonItem(image: playItemImage, size: playItemSize)
+//MARK: BottomBarDelegate
+extension ViewController: FDMBottomBarControlDelegate {
+    func clickPlayItem(item: UIButton, screenState: Bool) {
+        if item.isSelected {
+            let imageName = screenState ? ImageConfig.shared.video_full_play : ImageConfig.shared.video_mini_play
+            item.setImage(UIImage(named: imageName), for: .normal)
+        }else{
+            let imageName = screenState ? ImageConfig.shared.video_full_pause : ImageConfig.shared.video_mini_pause
+            item.setImage(UIImage(named: imageName), for: .normal)
+        }
+        
+        item.isSelected = !item.isSelected
+    }
+    
+    func clickFullItem(item: UIButton, screenState: Bool) {
+        if item.isSelected {
+            let imageName = ImageConfig.shared.video_screen
+            item.setImage(UIImage(named: imageName), for: .normal)
+        }else{
+            let imageName = ImageConfig.shared.video_unScreen
+            item.setImage(UIImage(named: imageName), for: .normal)
+        }
+        
+        item.isSelected = !item.isSelected
+    }
+    
+    func progressItemValueChange(item: UISlider, value: Float) {
+        bottomBarControl.timeItem.item.text = String(format: "%.3lf", value) + " : 01.00"
+    }
+}
 
-        playItem.clickButtonBlock = { sender , isFullScreen in
-            if sender.isSelected {
-                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_play : ImageConfig.shared.defaultVideo_all_play
-                playItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
-            }else{
-                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_pause : ImageConfig.shared.defaultVideo_all_pause
-                playItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
-            }
-            
-            sender.isSelected = !sender.isSelected
+//MARK: TopBarDelegate
+extension ViewController: FDMTopBarControlDelegate {
+    func clickBackItem(item: UIButton, screenState: Bool) {
+        if screenState {
+            print("小屏")
+        }else{
+            print("返回上一页")
         }
+    }
+    
+    func clickMoreItem(item: UIButton, screenState: Bool) {
         
-        
-        /* progress */
-        let thumbImage = UIImage(named: ImageConfig.shared.defaultVideo_mini_slider)
-        let progressItem = FDMControlProgressItem(progressHeight: 15)
-        progressItem.progressItem.setThumbImage(thumbImage, for: .normal)
-        progressItem.progressItem.minimumTrackTintColor = UIColor.Hex(hexString: "#87CEFA")
-        progressItem.progressItem.maximumTrackTintColor = UIColor.Hex(hexString: "#F5F5F5")
-        
-        let space = FDMControlSpaceItem(autoSpaceHeight: 25)
-        space.spaceItem.backgroundColor = .orange
-        
-        /* Time */
-        let timeText = "03:20 / 06:24"
-        let timeItem = FDMControlLabelItem(text: timeText, color: .white, font: UIFont.systemFont(ofSize: 12))
-        
-        /* 全屏 */
-        let fullItemSize = CGSize(width: 25, height: 25)
-        let fullItemImage = UIImage(named: ImageConfig.shared.defaultVideo_all_screen)!
-        let fullItem = FDMControlButtonItem(image: fullItemImage, size: fullItemSize)
-        
-        fullItem.clickButtonBlock = { sender , isFullScreen in
-            if sender.isSelected {
-                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_screen : ImageConfig.shared.defaultVideo_all_screen
-                fullItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
-            }else{
-                let imageName = isFullScreen ? ImageConfig.shared.defaultVideo_all_unScreen : ImageConfig.shared.defaultVideo_all_unScreen
-                fullItem.buttonItem.setImage(UIImage(named: imageName), for: .normal)
-            }
-            
-            sender.isSelected = !sender.isSelected
-        }
-        
-        /* Bar */
-        let bottomBar = FDMPlayerBarControl(itemAry: [playItem,progressItem,timeItem,fullItem])
-        bottomBar.backgroundView = UIImageView(image: UIImage(named: ImageConfig.shared.defaultVideo_bottomShadow))
-        
-        /* 手势控制器 */
-        let gestureControl = FDMPlayerGestureControl()
-        gestureControl.bottomBarControl = bottomBar
-        
-        videoView.addSubview(gestureControl)
-        gestureControl.snp.makeConstraints { (make) in
-            make.left.right.bottom.top.equalToSuperview()
-        }
     }
 }
 

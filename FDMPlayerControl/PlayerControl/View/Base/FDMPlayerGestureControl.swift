@@ -11,7 +11,10 @@ import UIKit
 /* 手势控制器 */
 class FDMPlayerGestureControl: UIView {
     
-    var isFullScreen: Bool = false
+    var isFullScreen = false
+    
+    /// 预留状态栏高度，在全屏或小屏在顶部的时候使用
+    var reserveStatusBarHeight = 0
     var smallBarHeight: CGFloat = 35
     var fullBarHeight: CGFloat = 45
     

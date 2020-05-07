@@ -39,14 +39,11 @@ extension UIView {
     }
     
     /// 3.通过Bezier创建某个圆角 -corner:某个角或多个角,多个角传UIRectCorner(rawValue:),四个角传.allCorners
-    func roundedCorners(corner:UIRectCorner,size:Double){
-        self.setNeedsLayout()
-        self.layoutIfNeeded()
-        
+    func roundedCorners(corners:UIRectCorner, cornerRadius:Double, viewSize: CGSize){
         let cornerLaye = CAShapeLayer.init()
-        let maskPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corner, cornerRadii:CGSize(width: size, height: size))
+        let maskPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint.zero, size: viewSize), byRoundingCorners: corners, cornerRadii:CGSize(width: cornerRadius, height: cornerRadius))
         cornerLaye.path = maskPath.cgPath
-        cornerLaye.frame = self.bounds
+        cornerLaye.frame = CGRect(origin: CGPoint.zero, size: viewSize)
         self.layer.mask = cornerLaye
     }
     
@@ -59,14 +56,15 @@ extension String {
      3.字符串尺寸
      4.从字符串URL中截取参数
      5.复制字符串到剪切板
-     6.正则表达式查找字符
-     7.JsonString转为Dictionary <String,Any>
-     8.JsonArray 转 DictionArray
-     9.返回该Hex值的颜色
-     10.获取网络图片尺寸
-     11.生成二维码图片
-     12.生成条形码图片
-     13.获取当前名称的本地图片
+     6.正则表达式查找字符(文本.正则)
+     7.正则表达式查找字符(正则.文本)
+     8.JsonString转为Dictionary <String,Any>
+     9.JsonArray 转 DictionArray
+     10.返回该Hex值的颜色
+     11.获取网络图片尺寸
+     12.生成二维码图片
+     13.生成条形码图片
+     14.获取当前名称的本地图片
     ==================*/
     
     /// 1.Base64 编解码 -encode: true:编码 false:解码 需要先将占位符换为=
@@ -84,9 +82,9 @@ extension String {
         }
     }
     
-    /// 2.MD5加密 -string:字符 -lower:true为小写，false为大写
-    func md5(string: String?, lower: Bool = true) -> String?{
-        guard let cStr = string?.cString(using: .utf8) else {
+    /// 2.MD5加密 lower:true为小写，false为大写
+    func md5(lower: Bool = true) -> String?{
+        guard let cStr = self.cString(using: .utf8) else {
             return nil
         }
         let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity: 16)
@@ -134,8 +132,8 @@ extension String {
     }
     
     /// 6.正则表达式查找字符 pattern:正则表达式 返回ture:验证成功
-    func regularExpression(pattern:String) -> Bool{
-        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+    func regularExpressionOfRegular(_ regular:String) -> Bool{
+        let regex = try? NSRegularExpression(pattern: regular, options: .caseInsensitive)
         let matches = regex?.matches(in: self, options: .reportProgress, range: NSRange(location: 0, length: self.count))
         
         if matches?.count != 0 {
@@ -145,7 +143,19 @@ extension String {
         }
     }
     
-    /// 7.JsonString转为Dictionary <String,Any>
+    /// 7.正则表达式查找字符 text:需要验证的内容 返回ture:验证成功
+    func regularExpressionOfText(_ text:String) -> Bool{
+        let regex = try? NSRegularExpression(pattern: self, options: .caseInsensitive)
+        let matches = regex?.matches(in: text, options: .reportProgress, range: NSRange(location: 0, length: text.count))
+        
+        if matches?.count != 0 {
+            return true
+        }else{
+            return false
+        }
+    }
+    
+    /// 8.JsonString转为Dictionary <String,Any>
      func toDictionary() -> Dictionary<String,Any>?{
          do {
          let dic = try JSONSerialization.jsonObject(with: self.data(using: String.Encoding.utf8)!, options: JSONSerialization.ReadingOptions.mutableLeaves) as! Dictionary<String, Any>
@@ -156,7 +166,7 @@ extension String {
          }
      }
     
-    /// 8.JsonArray 转 DictionArray
+    /// 9.JsonArray 转 DictionArray
     func toDiction_Array() -> NSArray {
         let jsonData: Data = self.data(using: .utf8)!
         
@@ -169,17 +179,17 @@ extension String {
         }
     }
     
-    /// 9.返回该Hex值的颜色
-    func Hex(alpha:CGFloat = 1) -> UIColor? {
+    /// 10.返回该Hex值的颜色
+    func colorHex(alpha:CGFloat = 1) -> UIColor {
         if self.hasPrefix("#") && self.count == 7 {
-            return UIColor.Hex(hexString: self, alpha: alpha)
+            return UIColor.Hex(self, alpha: alpha)
+        }else{
+            return .cyan
         }
-        
-        return nil
     }
     
     
-    /// 10.获取网络图片尺寸
+    /// 11.获取网络图片尺寸
     func imageSizeFromUrl() -> CGSize {
         guard !self.isEmpty else {return CGSize.zero}
         
@@ -201,7 +211,7 @@ extension String {
         return CGSize(width: width, height: height)
     }
     
-    /// 11.生成二维码图片
+    /// 12.生成二维码图片
     func imageQRCode() -> UIImage?{
         let context = CIContext()
         let data = self.data(using: .utf8)
@@ -218,7 +228,7 @@ extension String {
         return nil
     }
     
-    /// 12.生成条形码图片
+    /// 13.生成条形码图片
     func imageBarCode(color0: CIColor? , color1: CIColor?) -> UIImage{
         // 注意生成条形码的编码方式
         let data = self.data(using: .utf8, allowLossyConversion: false)
@@ -237,10 +247,11 @@ extension String {
         return codeImage
     }
     
-    /// 13.获取当前名称的本地图片
+    /// 14.获取当前名称的本地图片
     func image() -> UIImage? {
         return UIImage(named: self)
     }
+    
 }
 
 extension UIColor {
@@ -260,7 +271,7 @@ extension UIColor {
     }
     
     /// 2.十六进制RGB
-    class func Hex(hexString hex: String, alpha:CGFloat = 1) -> UIColor {
+    class func Hex(_ hex: String, alpha:CGFloat = 1) -> UIColor {
         // 去除空格等
         var cString: String = hex.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines).uppercased()
         // 去除#
@@ -357,6 +368,7 @@ extension UIImage {
      3.【Class】截取View作为图片 view:被设置的View包括子视图会转为图片
      4.【Class】生成二维码图片
      5.【Class】生成条形码图片
+     6.CoreGraphics 绘制圆角
     ==================*/
     
     /// 1.通过颜色返回一张图片
@@ -383,6 +395,25 @@ extension UIImage {
     class func imageBarCodeFromString(_ str:String) -> UIImage{
         return str.imageBarCode(color0: nil, color1: nil)
     }
+    
+    /// 6.CoreGraphics 绘制圆角 radius: 圆角值 andImageSize: 绘制的图片大小(与imageView大小相同就可以了)
+    func imageAddCornerWithRadius(_ radius: CGFloat, andImageSize size: CGSize) -> UIImage? {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
+        let ctx = UIGraphicsGetCurrentContext()
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: .allCorners, cornerRadii: CGSize(width: radius, height: radius))
+        
+        ctx?.addPath(path.cgPath)
+        ctx?.clip()
+        
+        self.draw(in: rect)
+        ctx?.drawPath(using: .fillStroke)
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
 }
 
 extension Array {
@@ -397,7 +428,7 @@ extension NSArray {
     /// 数组转json
     func toJSONString() -> String {
         if (!JSONSerialization.isValidJSONObject(self)) {
-            return "FDMQuick解析失败,数组转json【失败】"
+            return "数组转json【失败】"
         }
          
         let data : NSData! = try? JSONSerialization.data(withJSONObject: self, options: []) as NSData
@@ -418,7 +449,7 @@ extension NSDictionary {
     /// Dictionary<String,Any>转Json字符串
     func toJSONString() -> String{
         if (!JSONSerialization.isValidJSONObject(self)) {
-            return "Dictionary解析失败,Dictionary<String,Any>转Json字符串【失败】"
+            return "Dictionary<String,Any>转Json字符串【失败】"
         }
         let data : NSData! = try? JSONSerialization.data(withJSONObject: self, options: []) as NSData
         let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)

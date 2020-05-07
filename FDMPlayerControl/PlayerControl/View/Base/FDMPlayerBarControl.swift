@@ -11,6 +11,8 @@ import UIKit
 //MARK: Bar控制器 一排最多支持一个自适应Item
 class FDMPlayerBarControl: UIView {
     
+    let contentView = UIView()
+    
     /// 背景View
     var backgroundView: UIView? {
         didSet{
@@ -35,12 +37,16 @@ class FDMPlayerBarControl: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        self.addSubview(contentView)
     }
     
     /// 初始化
     init(itemAry: [FDMControlItem]) {
         self.itemAry = itemAry
         super.init(frame: CGRect.zero)
+        
+        self.addSubview(contentView)
         
         refreshLayoutItems()
     }
@@ -51,27 +57,21 @@ class FDMPlayerBarControl: UIView {
     
     /// 刷新Items布局
     func refreshLayoutItems() {
-        self.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         
-        guard itemAry?.count ?? 0 > 0  else {return}
-        createUI()
+        layoutUI()
     }
 }
 
 //MARK: UI
 extension FDMPlayerBarControl {
-    final func createUI() {
-        for subview in subviews {
-            if subview == backgroundView {
-                continue
-            }
-            
+    final func layoutUI() {
+        for subview in contentView.subviews {
             subview.removeFromSuperview()
         }
         
         for item in itemAry ?? [] {
-
-            self.addSubview(item.customItem)
+            contentView.addSubview(item.customItem)
         }
         
         var i = 0
@@ -92,25 +92,43 @@ extension FDMPlayerBarControl {
         let currentItem = item.customItem  // 当前item.view
         let currentItemSize = item.itemSize    // 当前Size
         
-        let isEndItem = itemAry?.count ?? 0 > (count + 1)   // 是否最后一个item
+        let isEndItem = itemAry?.count ?? 0 > (count + 1)   // 是否最后一个item 默认不是
         let previousView = previousItem?.customItem // 上一个item.view
         
-        let markRight = isEndItem ? itemAry![count + 1].customItem.snp.left : self.snp.right    // 当前view对于下一个item.view的布局 t
+        let markRight = isEndItem ? itemAry![count + 1].customItem.snp.left : contentView.snp.right    // 当前view对于下一个item.view的布局
         
         if count == 0 {
-            if item.itemType == .AutoItem {  //第一个 - 自适应
-                currentItem.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(itemSpacing)
-                    make.centerY.equalToSuperview()
-                    make.right.equalToSuperview().offset(-itemSpacing)
-                    make.height.equalTo(currentItemSize.height)
+            if !isEndItem { // 是最后一个
+                if item.itemType == .AutoItem {  //第一个 - 自适应
+                    currentItem.snp.makeConstraints { (make) in
+                        make.left.equalToSuperview().offset(itemSpacing)
+                        make.centerY.equalToSuperview()
+                        make.right.equalToSuperview().offset(-itemSpacing)
+                        make.height.equalTo(currentItemSize.height)
+                    }
+                }else { //第一个 - 固定
+                    currentItem.snp.makeConstraints { (make) in
+                        make.left.equalToSuperview().offset(itemSpacing)
+                        make.centerY.equalToSuperview()
+                        make.height.equalTo(currentItemSize.height)
+                        make.width.equalTo(currentItemSize.width)
+                    }
                 }
-            }else { //第一个 - 固定
-                currentItem.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(itemSpacing)
-                    make.centerY.equalToSuperview()
-                    make.height.equalTo(currentItemSize.height)
-                    make.width.equalTo(currentItemSize.width)
+            }else{
+                if item.itemType == .AutoItem {  //第一个 - 自适应
+                    currentItem.snp.makeConstraints { (make) in
+                        make.left.equalToSuperview().offset(itemSpacing)
+                        make.centerY.equalToSuperview()
+                        make.right.equalTo(markRight).offset(-itemSpacing)
+                        make.height.equalTo(currentItemSize.height)
+                    }
+                }else { //第一个 - 固定
+                    currentItem.snp.makeConstraints { (make) in
+                        make.left.equalToSuperview().offset(itemSpacing)
+                        make.centerY.equalToSuperview()
+                        make.height.equalTo(currentItemSize.height)
+                        make.width.equalTo(currentItemSize.width)
+                    }
                 }
             }
         }else if !isEndItem {
@@ -154,6 +172,10 @@ extension FDMPlayerBarControl {
     
     override func layoutSubviews() {
         super.layoutIfNeeded()
+        
+        contentView.snp.makeConstraints { (make) in
+            make.left.right.bottom.top.equalToSuperview()
+        }
         
         guard backgroundView != nil else {return}
         backgroundView?.snp.makeConstraints({ (make) in
