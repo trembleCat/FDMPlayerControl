@@ -1,5 +1,5 @@
 //
-//  FDMControlCustomItem.swift
+//  FDMCustomItemControl.swift
 //  FDMPlayerControl
 //
 //  Created by 发抖喵 on 2020/4/30.
@@ -10,7 +10,7 @@ import UIKit
 
 //MARK: ButtonItem
 
-class FDMControlButtonItem: FDMControlItem {
+class FDMButtonItemControl: FDMPlayerItemControl {
     let item = UIButton(type: .custom)
     
     /// 点击返回Button 与 全屏状态
@@ -65,7 +65,7 @@ class FDMControlButtonItem: FDMControlItem {
 
 
 //MARK: LabelItem
-class FDMControlLabelItem: FDMControlItem {
+class FDMLabelItemControl: FDMPlayerItemControl {
     let item = UILabel()
     
     /// LabelItem - 初始化 - 固定宽高
@@ -94,7 +94,7 @@ class FDMControlLabelItem: FDMControlItem {
 
 
 //MARK: SpaceItem
-class FDMControlSpaceItem: FDMControlItem {
+class FDMSpaceItemControl: FDMPlayerItemControl {
     let item = UIView()
     
     /// SpaceItem - 初始化 - 固定间距宽高
@@ -112,7 +112,7 @@ class FDMControlSpaceItem: FDMControlItem {
 
 
 //MARK: ProgressItem
-class FDMControlProgressItem: FDMControlItem {
+class FDMProgressItemControl: FDMPlayerItemControl {
     let item = UISlider()
     
     var itemChangeValueBlock: ((UISlider,Float)->())?

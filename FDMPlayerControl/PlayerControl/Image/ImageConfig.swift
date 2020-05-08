@@ -44,8 +44,6 @@ class ImageConfig: NSObject {
     /// 中心亮度标识
     let video_center_bright = "defaultVideo_center_bright"
     
-    /// 全屏 - 滑块
-    let video_full_slider = "defaultVideo_full_slider"
     /// 小屏 - 滑块
     let video_mini_slider = "defaultVideo_mini_slider"
     /// 全屏中心暂停
@@ -58,8 +56,11 @@ class ImageConfig: NSObject {
     
     //MARK: PublicVideo
     
-    /// Thumb
-    let player_thumb = "player_thumb"
+    /// full_thumb
+    let player_full_thumb = "player_full_thumb"
+    /// mini_thumb
+    let player_mini_thumb = "player_mini_thumb"
+    
     /// 信号量1
     let player_volum1 = "player_volum1"
     /// 信号量2

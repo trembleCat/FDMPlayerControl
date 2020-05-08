@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */; };
-		1805C9142456CDF300254818 /* FDMControlItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805C9132456CDF300254818 /* FDMControlItem.swift */; };
-		184385FB245AA45A008EE5E2 /* FDMControlCustomItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */; };
-		184470B92463E70200988E2F /* FDMBottomBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184470B82463E70200988E2F /* FDMBottomBarControl.swift */; };
-		184470BB2463FA2800988E2F /* FDMTopBarControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184470BA2463FA2800988E2F /* FDMTopBarControl.swift */; };
+		1805C9142456CDF300254818 /* FDMPlayerItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1805C9132456CDF300254818 /* FDMPlayerItemControl.swift */; };
+		184385FB245AA45A008EE5E2 /* FDMCustomItemControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184385FA245AA45A008EE5E2 /* FDMCustomItemControl.swift */; };
 		184470BD2463FFAE00988E2F /* FDMExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184470BC2463FFAE00988E2F /* FDMExtension.swift */; };
+		1848C7342464E47200E16EBC /* FDMGcdTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848C7332464E47200E16EBC /* FDMGcdTimer.swift */; };
+		1848C736246538BE00E16EBC /* FDMPlayerControlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */; };
 		184B253C24582F3F00C2772A /* PlayerImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184B253B24582F3F00C2772A /* PlayerImage.xcassets */; };
 		184B253E2458304400C2772A /* ImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B253D2458304400C2772A /* ImageConfig.swift */; };
 		185BBE5A2456AB280093DF12 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BBE592456AB280093DF12 /* AppDelegate.swift */; };
@@ -21,16 +21,20 @@
 		185BBE632456AB280093DF12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185BBE622456AB280093DF12 /* Assets.xcassets */; };
 		185BBE662456AB280093DF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BBE642456AB280093DF12 /* LaunchScreen.storyboard */; };
 		18C09D282459303E00C29D3A /* FDMPlayerGestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */; };
+		18D104C72465534A001B32B4 /* FDMBottomItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D104C62465534A001B32B4 /* FDMBottomItemManager.swift */; };
+		18D104CD246559FE001B32B4 /* FDMPlayerBottomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D104CC246559FE001B32B4 /* FDMPlayerBottomControl.swift */; };
+		18D104D024655E35001B32B4 /* FDMTopItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D104CF24655E35001B32B4 /* FDMTopItemManager.swift */; };
+		18D104D224656201001B32B4 /* FDMPlayerTopControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D104D124656201001B32B4 /* FDMPlayerTopControl.swift */; };
 		270BD05E2170CF4D9E46713E /* Pods_FDMPlayerControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerBarControl.swift; sourceTree = "<group>"; };
-		1805C9132456CDF300254818 /* FDMControlItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMControlItem.swift; sourceTree = "<group>"; };
-		184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMControlCustomItem.swift; sourceTree = "<group>"; };
-		184470B82463E70200988E2F /* FDMBottomBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMBottomBarControl.swift; sourceTree = "<group>"; };
-		184470BA2463FA2800988E2F /* FDMTopBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMTopBarControl.swift; sourceTree = "<group>"; };
+		1805C9132456CDF300254818 /* FDMPlayerItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerItemControl.swift; sourceTree = "<group>"; };
+		184385FA245AA45A008EE5E2 /* FDMCustomItemControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMCustomItemControl.swift; sourceTree = "<group>"; };
 		184470BC2463FFAE00988E2F /* FDMExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMExtension.swift; sourceTree = "<group>"; };
+		1848C7332464E47200E16EBC /* FDMGcdTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMGcdTimer.swift; sourceTree = "<group>"; };
+		1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerControlManager.swift; sourceTree = "<group>"; };
 		184B253B24582F3F00C2772A /* PlayerImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PlayerImage.xcassets; sourceTree = "<group>"; };
 		184B253D2458304400C2772A /* ImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfig.swift; sourceTree = "<group>"; };
 		185BBE562456AB280093DF12 /* FDMPlayerControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FDMPlayerControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +46,10 @@
 		185BBE672456AB280093DF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185BBE752456B8C50093DF12 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../ios-edumanage/Carthage/Build/iOS/SnapKit.framework"; sourceTree = "<group>"; };
 		18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerGestureControl.swift; sourceTree = "<group>"; };
+		18D104C62465534A001B32B4 /* FDMBottomItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMBottomItemManager.swift; sourceTree = "<group>"; };
+		18D104CC246559FE001B32B4 /* FDMPlayerBottomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerBottomControl.swift; sourceTree = "<group>"; };
+		18D104CF24655E35001B32B4 /* FDMTopItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMTopItemManager.swift; sourceTree = "<group>"; };
+		18D104D124656201001B32B4 /* FDMPlayerTopControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerTopControl.swift; sourceTree = "<group>"; };
 		1B589AE814D0F7DB181DB02D /* Pods-FDMPlayerControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.debug.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.debug.xcconfig"; sourceTree = "<group>"; };
 		B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FDMPlayerControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CACC7C602A6C5244CCC9AC /* Pods-FDMPlayerControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.release.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,7 +72,7 @@
 			children = (
 				18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */,
 				1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */,
-				1805C9132456CDF300254818 /* FDMControlItem.swift */,
+				1805C9132456CDF300254818 /* FDMPlayerItemControl.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -90,7 +98,6 @@
 		185BBE582456AB280093DF12 /* FDMPlayerControl */ = {
 			isa = PBXGroup;
 			children = (
-				184470BC2463FFAE00988E2F /* FDMExtension.swift */,
 				185BBE6D2456AB8C0093DF12 /* PlayerControl */,
 				185BBE592456AB280093DF12 /* AppDelegate.swift */,
 				185BBE5D2456AB280093DF12 /* ViewController.swift */,
@@ -105,9 +112,12 @@
 		185BBE6D2456AB8C0093DF12 /* PlayerControl */ = {
 			isa = PBXGroup;
 			children = (
-				184B253D2458304400C2772A /* ImageConfig.swift */,
-				184B253B24582F3F00C2772A /* PlayerImage.xcassets */,
+				1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */,
+				18D104D124656201001B32B4 /* FDMPlayerTopControl.swift */,
+				18D104CC246559FE001B32B4 /* FDMPlayerBottomControl.swift */,
 				185BBE7C2456BAC80093DF12 /* View */,
+				18D104CE24655D4D001B32B4 /* Other */,
+				18D104C824655992001B32B4 /* Image */,
 			);
 			path = PlayerControl;
 			sourceTree = "<group>";
@@ -124,8 +134,8 @@
 		185BBE7C2456BAC80093DF12 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				184470BA2463FA2800988E2F /* FDMTopBarControl.swift */,
-				184470B82463E70200988E2F /* FDMBottomBarControl.swift */,
+				18D104CF24655E35001B32B4 /* FDMTopItemManager.swift */,
+				18D104C62465534A001B32B4 /* FDMBottomItemManager.swift */,
 				1843AD7C245818DE00F0E551 /* Base */,
 				18C09D242459200F00C29D3A /* CustomItem */,
 			);
@@ -135,9 +145,27 @@
 		18C09D242459200F00C29D3A /* CustomItem */ = {
 			isa = PBXGroup;
 			children = (
-				184385FA245AA45A008EE5E2 /* FDMControlCustomItem.swift */,
+				184385FA245AA45A008EE5E2 /* FDMCustomItemControl.swift */,
 			);
 			path = CustomItem;
+			sourceTree = "<group>";
+		};
+		18D104C824655992001B32B4 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				184B253D2458304400C2772A /* ImageConfig.swift */,
+				184B253B24582F3F00C2772A /* PlayerImage.xcassets */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		18D104CE24655D4D001B32B4 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				184470BC2463FFAE00988E2F /* FDMExtension.swift */,
+				1848C7332464E47200E16EBC /* FDMGcdTimer.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		F115A0B2C5DFCCA95DC4FDAD /* Pods */ = {
@@ -265,16 +293,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				184470B92463E70200988E2F /* FDMBottomBarControl.swift in Sources */,
+				1848C736246538BE00E16EBC /* FDMPlayerControlManager.swift in Sources */,
 				184470BD2463FFAE00988E2F /* FDMExtension.swift in Sources */,
+				18D104C72465534A001B32B4 /* FDMBottomItemManager.swift in Sources */,
 				18C09D282459303E00C29D3A /* FDMPlayerGestureControl.swift in Sources */,
-				184470BB2463FA2800988E2F /* FDMTopBarControl.swift in Sources */,
 				1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */,
-				1805C9142456CDF300254818 /* FDMControlItem.swift in Sources */,
+				1805C9142456CDF300254818 /* FDMPlayerItemControl.swift in Sources */,
 				184B253E2458304400C2772A /* ImageConfig.swift in Sources */,
+				1848C7342464E47200E16EBC /* FDMGcdTimer.swift in Sources */,
+				18D104CD246559FE001B32B4 /* FDMPlayerBottomControl.swift in Sources */,
 				185BBE5E2456AB280093DF12 /* ViewController.swift in Sources */,
+				18D104D224656201001B32B4 /* FDMPlayerTopControl.swift in Sources */,
 				185BBE5A2456AB280093DF12 /* AppDelegate.swift in Sources */,
-				184385FB245AA45A008EE5E2 /* FDMControlCustomItem.swift in Sources */,
+				18D104D024655E35001B32B4 /* FDMTopItemManager.swift in Sources */,
+				184385FB245AA45A008EE5E2 /* FDMCustomItemControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +451,7 @@
 			baseConfigurationReference = 1B589AE814D0F7DB181DB02D /* Pods-FDMPlayerControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FDMPlayerControl/FDMPlayerControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 75C84DSWC2;
 				INFOPLIST_FILE = FDMPlayerControl/Info.plist;
@@ -439,6 +472,7 @@
 			baseConfigurationReference = E9CACC7C602A6C5244CCC9AC /* Pods-FDMPlayerControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FDMPlayerControl/FDMPlayerControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 75C84DSWC2;
 				INFOPLIST_FILE = FDMPlayerControl/Info.plist;

@@ -5,12 +5,11 @@
       "scale" : "1x"
     },
     {
-      "filename" : "dm_progress_ball_iphone_16x16_@2x.png",
+      "filename" : "返回.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "dm_progress_ball_iphone_16x16_@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

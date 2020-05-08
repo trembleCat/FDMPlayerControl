@@ -9,6 +9,7 @@
 import UIKit
 import CommonCrypto
 
+//MARK: UIView
 extension UIView {
     
     /*==================
@@ -49,6 +50,7 @@ extension UIView {
     
 }
 
+//MARK: String
 extension String {
     /*==================
      1.Base64 编解码
@@ -254,6 +256,7 @@ extension String {
     
 }
 
+//MARK: UIColor
 extension UIColor {
     
     /*==================
@@ -361,6 +364,7 @@ extension UIColor {
     
 }
 
+//MARK: UIImage
 extension UIImage {
     /*==================
      1.【Class】通过颜色返回一张图片
@@ -416,6 +420,7 @@ extension UIImage {
     }
 }
 
+//MARK: Array
 extension Array {
     /// 数组转json
     func toJSONString() -> String {
@@ -424,6 +429,7 @@ extension Array {
     }
 }
 
+//MARK: NSArray
 extension NSArray {
     /// 数组转json
     func toJSONString() -> String {
@@ -437,6 +443,7 @@ extension NSArray {
     }
 }
 
+//MARK: Dictionary
 extension Dictionary {
     /// Dictionary<String,Any>转Json字符串
     func toJSONString() -> String{
@@ -445,6 +452,7 @@ extension Dictionary {
     }
 }
 
+//MARK: NSDictionary
 extension NSDictionary {
     /// Dictionary<String,Any>转Json字符串
     func toJSONString() -> String{

@@ -11,24 +11,6 @@ import UIKit
 /* 手势控制器 */
 class FDMPlayerGestureControl: UIView {
     
-    var isFullScreen = false
-    
-    /// 预留状态栏高度，在全屏或小屏在顶部的时候使用
-    var reserveStatusBarHeight = 0
-    var smallBarHeight: CGFloat = 35
-    var fullBarHeight: CGFloat = 45
-    
-    var topBarControl: FDMPlayerBarControl? {
-        didSet {
-            self.addSubview(topBarControl!)
-        }
-    }
-    var bottomBarControl: FDMPlayerBarControl? {
-        didSet {
-            self.addSubview(bottomBarControl!)
-        }
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,17 +23,5 @@ class FDMPlayerGestureControl: UIView {
 
 //MARK: Action
 extension FDMPlayerGestureControl {
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        bottomBarControl?.snp.makeConstraints({ (make) in
-            make.left.right.bottom.equalTo(self)
-            make.height.equalTo(isFullScreen ? fullBarHeight : smallBarHeight)
-        })
-        
-        topBarControl?.snp.makeConstraints({ (make) in
-            make.left.right.top.equalTo(self)
-            make.height.equalTo(isFullScreen ? fullBarHeight + 20 : smallBarHeight)
-        })
-    }
+    
 }

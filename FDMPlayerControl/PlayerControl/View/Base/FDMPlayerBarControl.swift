@@ -11,11 +11,15 @@ import UIKit
 //MARK: Bar控制器 一排最多支持一个自适应Item
 class FDMPlayerBarControl: UIView {
     
-    let contentView = UIView()
+    private let contentView = UIView()
+    
+    /// Bar高度
+    var barHeight: CGFloat = 40
     
     /// 背景View
     var backgroundView: UIView? {
         didSet{
+            guard backgroundView != nil else { return }
             self.insertSubview(backgroundView!, at: 0)
         }
     }
@@ -29,7 +33,7 @@ class FDMPlayerBarControl: UIView {
     }
     
     /// items
-    var itemAry: [FDMControlItem]? {
+    var itemAry: [FDMPlayerItemControl]? {
         didSet{
             refreshLayoutItems()
         }
@@ -42,7 +46,7 @@ class FDMPlayerBarControl: UIView {
     }
     
     /// 初始化
-    init(itemAry: [FDMControlItem]) {
+    init(itemAry: [FDMPlayerItemControl]) {
         self.itemAry = itemAry
         super.init(frame: CGRect.zero)
         
@@ -61,11 +65,17 @@ class FDMPlayerBarControl: UIView {
         
         layoutUI()
     }
+    
+    /// 移除背景View
+    func removeBackgroundView() {
+        guard backgroundView != nil else { return }
+        backgroundView?.removeFromSuperview()
+    }
 }
 
 //MARK: UI
 extension FDMPlayerBarControl {
-    final func layoutUI() {
+    private func layoutUI() {
         for subview in contentView.subviews {
             subview.removeFromSuperview()
         }
@@ -76,7 +86,7 @@ extension FDMPlayerBarControl {
         
         var i = 0
         var isAutoItem = false
-        var previousItem: FDMControlItem?
+        var previousItem: FDMPlayerItemControl?
         
         for item in itemAry ?? [] {
             isAutoItem = item.itemType == .AutoItem ? true : isAutoItem
@@ -88,7 +98,7 @@ extension FDMPlayerBarControl {
     }
     
     /// 布局Item
-    final func layoutItems(item: FDMControlItem,previousItem: FDMControlItem?, count: Int, isAutoItem: Bool) {
+    private func layoutItems(item: FDMPlayerItemControl,previousItem: FDMPlayerItemControl?, count: Int, isAutoItem: Bool) {
         let currentItem = item.customItem  // 当前item.view
         let currentItemSize = item.itemSize    // 当前Size
         
@@ -171,14 +181,14 @@ extension FDMPlayerBarControl {
     }
     
     override func layoutSubviews() {
-        super.layoutIfNeeded()
+        super.layoutSubviews()
         
-        contentView.snp.makeConstraints { (make) in
-            make.left.right.bottom.top.equalToSuperview()
+        contentView.snp.remakeConstraints { (make) in
+            make.left.top.right.bottom.equalToSuperview()
         }
         
         guard backgroundView != nil else {return}
-        backgroundView?.snp.makeConstraints({ (make) in
+        backgroundView?.snp.remakeConstraints({ (make) in
             make.left.right.bottom.top.equalToSuperview()
         })
     }

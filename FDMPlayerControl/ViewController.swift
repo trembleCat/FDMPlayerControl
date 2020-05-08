@@ -11,84 +11,48 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    let videoView = UIView()
-    let playerGestureControl = FDMPlayerGestureControl()
-    let bottomBarControl = FDMBottomBarControl(frame: .zero)
-    let topBarControl = FDMTopBarControl(frame: .zero)
+    let playerView = UIView()
+    
+    let playerControlManager = FDMPlayerControlManager()
+    
+    let playerStatusBar = FDMPlayerBarControl(frame: .zero)
+    let playerTopControl = FDMPlayerTopControl(frame: .zero)
+    let playerBottomControl = FDMPlayerBottomControl(frame: .zero)
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {.lightContent}
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-        self.view.addSubview(videoView)
-        videoView.backgroundColor = .black
-        videoView.snp.makeConstraints { (make) in
+        self.view.addSubview(playerView)
+        playerView.backgroundColor = .black
+        playerView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
-            make.height.equalTo(250)
+            make.top.equalToSuperview().offset(0)
+            make.height.equalTo(240)
         }
         
-        bottomBarControl.delegate = self
-        playerGestureControl.bottomBarControl = bottomBarControl
-        
-        topBarControl.delegate = self
-        playerGestureControl.topBarControl = topBarControl
-        
-        videoView.addSubview(playerGestureControl)
-        playerGestureControl.snp.makeConstraints { (make) in
-            make.left.right.top.bottom.equalToSuperview()
+        playerView.addSubview(playerControlManager)
+        playerControlManager.snp.makeConstraints { (make) in
+            make.left.right.bottom.top.equalToSuperview()
         }
+        
+        createTopControl()
+        createBottomContro()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        bottomBarControl.itemAry?.removeFirst()
+    func createTopControl() {
+        playerStatusBar.barHeight = 20
+        playerControlManager.topBarControlAry = [playerStatusBar,playerTopControl]
+        
+        playerTopControl.itemManager.titleItem.item.text = "中华小当家"
     }
-}
+    
+    func createBottomContro() {
+        playerControlManager.bottomBarControlAry = [playerBottomControl]
+    }
 
-//MARK: BottomBarDelegate
-extension ViewController: FDMBottomBarControlDelegate {
-    func clickPlayItem(item: UIButton, screenState: Bool) {
-        if item.isSelected {
-            let imageName = screenState ? ImageConfig.shared.video_full_play : ImageConfig.shared.video_mini_play
-            item.setImage(UIImage(named: imageName), for: .normal)
-        }else{
-            let imageName = screenState ? ImageConfig.shared.video_full_pause : ImageConfig.shared.video_mini_pause
-            item.setImage(UIImage(named: imageName), for: .normal)
-        }
-        
-        item.isSelected = !item.isSelected
-    }
-    
-    func clickFullItem(item: UIButton, screenState: Bool) {
-        if item.isSelected {
-            let imageName = ImageConfig.shared.video_screen
-            item.setImage(UIImage(named: imageName), for: .normal)
-        }else{
-            let imageName = ImageConfig.shared.video_unScreen
-            item.setImage(UIImage(named: imageName), for: .normal)
-        }
-        
-        item.isSelected = !item.isSelected
-    }
-    
-    func progressItemValueChange(item: UISlider, value: Float) {
-        bottomBarControl.timeItem.item.text = String(format: "%.3lf", value) + " : 01.00"
-    }
-}
-
-//MARK: TopBarDelegate
-extension ViewController: FDMTopBarControlDelegate {
-    func clickBackItem(item: UIButton, screenState: Bool) {
-        if screenState {
-            print("小屏")
-        }else{
-            print("返回上一页")
-        }
-    }
-    
-    func clickMoreItem(item: UIButton, screenState: Bool) {
-        
-    }
 }
 
 
