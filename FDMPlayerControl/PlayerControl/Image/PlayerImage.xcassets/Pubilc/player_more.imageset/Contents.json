@@ -5,12 +5,12 @@
       "scale" : "1x"
     },
     {
-      "filename" : "player_shortVideoWhiteBack_iphone_38x38_@2x.png",
+      "filename" : "archive_add_more_n_16x16_@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "player_shortVideoWhiteBack_iphone_38x38_@3x.png",
+      "filename" : "archive_add_more_n_16x16_@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -18,8 +18,5 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
-  },
-  "properties" : {
-    "template-rendering-intent" : "original"
   }
 }

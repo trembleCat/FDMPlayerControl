@@ -8,26 +8,21 @@
 
 import UIKit
 
+// 屏幕高度
+let FScreenH = UIScreen.main.bounds.height
+// 屏幕宽度
+let FScreenW = UIScreen.main.bounds.width
+
 let fullScreenNotificationName = "FDMPlayerFullScreen"
 let miniScreenNotificationName = "FDMPlayerMiniScreen"
 
 class FDMPlayerControlManager: UIView {
-    
-    private(set) var fullScreenState = false
-
     let gestureControl = FDMPlayerGestureControl()
-    var topBarControlAry: [FDMPlayerBarControl]? {
-        didSet {
-            addBarControl()
-
-        }
-    }
     
-    var bottomBarControlAry: [FDMPlayerBarControl]? {
-        didSet {
-            addBarControl()
-        }
-    }
+    var topBarControlAry: [FDMPlayerBarControl]? { didSet { addBarControl() } }
+    var bottomBarControlAry: [FDMPlayerBarControl]? { didSet { addBarControl() } }
+    
+    private(set) var fullScreenStatus = false
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,8 +35,22 @@ class FDMPlayerControlManager: UIView {
     }
 }
 
+//MARK: PublicAction
 extension FDMPlayerControlManager {
-    func createUI() {
+    /// 设置全屏状态
+    func setFullScreenStatus(_ status: Bool) {
+        fullScreenStatus = status
+        if status {
+            NotificationCenter.default.post(name: NSNotification.Name.init(fullScreenNotificationName), object: nil)
+        }else{
+            NotificationCenter.default.post(name: NSNotification.Name.init(miniScreenNotificationName), object: nil)
+        }
+    }
+}
+
+//MARK: UI + Action
+extension FDMPlayerControlManager {
+    private func createUI() {
         self.addSubview(gestureControl)
         
         /* 手势控制器 */
@@ -51,7 +60,7 @@ extension FDMPlayerControlManager {
         }
     }
     
-    func addBarControl() {
+    private func addBarControl() {
         for barControl in gestureControl.subviews {
             barControl.removeFromSuperview()
         }
@@ -73,7 +82,7 @@ extension FDMPlayerControlManager {
         }
     }
     
-    func layoutTopBarControl(_ topControl: FDMPlayerBarControl, topHeight: CGFloat) {
+    private func layoutTopBarControl(_ topControl: FDMPlayerBarControl, topHeight: CGFloat) {
         topControl.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(topHeight)
@@ -81,7 +90,7 @@ extension FDMPlayerControlManager {
         }
     }
     
-    func layoutBottomBarControl(_ bottomControl: FDMPlayerBarControl, bottomHeight: CGFloat) {
+    private func layoutBottomBarControl(_ bottomControl: FDMPlayerBarControl, bottomHeight: CGFloat) {
         bottomControl.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-bottomHeight)

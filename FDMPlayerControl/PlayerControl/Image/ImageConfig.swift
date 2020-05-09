@@ -41,8 +41,6 @@ class ImageConfig: NSObject {
     
     /// 亮度标识
     let video_bright = "defaultVideo_bright"
-    /// 中心亮度标识
-    let video_center_bright = "defaultVideo_center_bright"
     
     /// 小屏 - 滑块
     let video_mini_slider = "defaultVideo_mini_slider"
@@ -76,4 +74,8 @@ class ImageConfig: NSObject {
     
     /// 更多
     let player_more = "player_more"
+    /// 全屏 - 设置
+    let player_full_settings = "player_full_settings"
+    /// 全屏 - 弹幕
+    let player_barrage = "player_barrage"
 }
