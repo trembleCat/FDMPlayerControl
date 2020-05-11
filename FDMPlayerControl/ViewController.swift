@@ -10,7 +10,10 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
+    
     let playerView = UIView()
+    let aliplayer = AliPlayer()
+    let playerTimer = FDMGcdTimer()
     
     // ControlManager
     let playerControlManager = FDMPlayerControlManager()
@@ -25,7 +28,7 @@ class ViewController: UIViewController {
     let playerBottomProgressControl = FDMPlayerBarControl(frame: .zero)
     
     var statusBarHidden = false
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent}
     override var prefersStatusBarHidden: Bool { return statusBarHidden }
 
@@ -35,11 +38,14 @@ class ViewController: UIViewController {
         
         /* 1.创建视频播放器 */
         self.view.addSubview(playerView)
+        aliplayer?.playerView = playerView
+        aliplayer?.isLoop = true
+        AliPlayer.setEnableLog(false)
         playerView.backgroundColor = .black
         playerView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(0)
-            make.height.equalTo(240)
+            make.height.equalTo(285)
         }
         
         /* 2.视频播放器添加playerControlManager */
@@ -50,6 +56,11 @@ class ViewController: UIViewController {
         
         createTopControl()
         createBottomContro()
+        
+        let playerSource = AVPUrlSource()
+        playerSource.url(with: "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4")
+        self.aliplayer?.setUrlSource(playerSource)
+        self.aliplayer?.prepare()
     }
     
     /// 创建topBarControl
@@ -60,7 +71,7 @@ class ViewController: UIViewController {
         playerControlManager.topBarControlAry = [playerStatusBar,playerTopControl]
         
         playerTopControl.delegate = self
-        playerTopControl.items.titleItem.item.text = "喜🐑🐑与灰太🐺"
+        playerTopControl.items.titleItem.item.text = "惊奇队长"
     }
     
     /// 创建bottomBarControl
@@ -79,11 +90,7 @@ class ViewController: UIViewController {
 extension ViewController: FDMPlayerTopControlDelegate {
     func clickBackItem(_ item: UIButton, fullStatus: Bool) {
         if fullStatus {
-            print("返回小屏")
-            
-            playerControlManager.bottomBarControlAry = [playerBottomControl]
-            playerBottomControl.offFullScreen()
-            playerControlManager.setFullScreenStatus(false)
+            setUnFullScreen()
         }else{
             print("返回上一页")
         }
@@ -94,36 +101,54 @@ extension ViewController: FDMPlayerTopControlDelegate {
 extension ViewController: FDMPlayerBottomControlDelegate {
     func clickPlayerItem(_ item: UIButton, fullStatus: Bool) {
         if item.isSelected {
-            print("播放")
+            aliplayer?.start()
         }else{
-            print("暂停")
+            aliplayer?.pause()
         }
     }
     
     func clickFullScreenItem(_ item: UIButton, fullStatus: Bool) {
         if item.isSelected {
-            print("全屏")
-            
-            playerBottomProgressControl.itemAry = [FDMPlayerItemsManager.shared.progressItem]
-            playerControlManager.bottomBarControlAry = [playerBottomControl,playerBottomProgressControl]
-            playerBottomControl.onFullScreen()
-            playerControlManager.setFullScreenStatus(true)
-            
+            setFullScreen()
             
             item.isSelected = !item.isSelected
         }else{
-            print("取消全屏")
-            
-            playerControlManager.bottomBarControlAry = [playerBottomControl]
-            playerBottomControl.offFullScreen()
-            playerControlManager.setFullScreenStatus(false)
+            setUnFullScreen()
         }
     }
     
     func changeProgressItem(_ item: UISlider, value: Float) {
         print("进度条：\(value)")
     }
+    
+    /// 设置全屏
+    func setFullScreen() {
+        print("全屏")
+        
+        playerView.snp.remakeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
+        
+        playerControlManager.setFullScreenStatus(true)
+        playerBottomProgressControl.itemAry = [FDMPlayerItemsManager.shared.progressItem]
+        playerControlManager.bottomBarControlAry = [playerBottomControl,playerBottomProgressControl]
+        playerBottomControl.onFullScreen()
+    }
+    
+    /// 取消全屏
+    func setUnFullScreen() {
+        print("取消全屏")
+        
+        playerView.snp.remakeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(0)
+            make.height.equalTo(240)
+        }
+        
+        playerControlManager.setFullScreenStatus(false)
+        playerControlManager.bottomBarControlAry = [playerBottomControl]
+        playerBottomControl.offFullScreen()
+    }
 }
-
 
 

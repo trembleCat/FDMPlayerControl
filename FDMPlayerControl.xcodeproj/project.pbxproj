@@ -23,10 +23,37 @@
 		185BBE612456AB280093DF12 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BBE5F2456AB280093DF12 /* Main.storyboard */; };
 		185BBE632456AB280093DF12 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185BBE622456AB280093DF12 /* Assets.xcassets */; };
 		185BBE662456AB280093DF12 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BBE642456AB280093DF12 /* LaunchScreen.storyboard */; };
+		188D1C7E24694432003E4CB1 /* AliyunMediaDownloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7824694421003E4CB1 /* AliyunMediaDownloader.framework */; };
+		188D1C7F24694432003E4CB1 /* AliyunMediaDownloader.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7824694421003E4CB1 /* AliyunMediaDownloader.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		188D1C8024694433003E4CB1 /* alivcffmpeg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7524694421003E4CB1 /* alivcffmpeg.framework */; };
+		188D1C8124694434003E4CB1 /* alivcffmpeg.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7524694421003E4CB1 /* alivcffmpeg.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		188D1C8224694435003E4CB1 /* AlivcConan.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7424694421003E4CB1 /* AlivcConan.framework */; };
+		188D1C8324694435003E4CB1 /* AlivcConan.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7424694421003E4CB1 /* AlivcConan.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		188D1C8424694437003E4CB1 /* artpSource.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7724694421003E4CB1 /* artpSource.framework */; };
+		188D1C8524694437003E4CB1 /* artpSource.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7724694421003E4CB1 /* artpSource.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		188D1C8624694442003E4CB1 /* AliyunPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7624694421003E4CB1 /* AliyunPlayer.framework */; };
+		188D1C8724694442003E4CB1 /* AliyunPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7624694421003E4CB1 /* AliyunPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18C09D282459303E00C29D3A /* FDMPlayerGestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */; };
-		18CF6B162466A71C00752B85 /* FullViewControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CF6B152466A71C00752B85 /* FullViewControl.swift */; };
 		270BD05E2170CF4D9E46713E /* Pods_FDMPlayerControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		188D1C6A24694004003E4CB1 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				188D1C8524694437003E4CB1 /* artpSource.framework in Embed Frameworks */,
+				188D1C8324694435003E4CB1 /* AlivcConan.framework in Embed Frameworks */,
+				188D1C7F24694432003E4CB1 /* AliyunMediaDownloader.framework in Embed Frameworks */,
+				188D1C8124694434003E4CB1 /* alivcffmpeg.framework in Embed Frameworks */,
+				188D1C8724694442003E4CB1 /* AliyunPlayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerBarControl.swift; sourceTree = "<group>"; };
@@ -48,8 +75,13 @@
 		185BBE652456AB280093DF12 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		185BBE672456AB280093DF12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		185BBE752456B8C50093DF12 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "../ios-edumanage/Carthage/Build/iOS/SnapKit.framework"; sourceTree = "<group>"; };
+		188D1C7424694421003E4CB1 /* AlivcConan.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlivcConan.framework; sourceTree = "<group>"; };
+		188D1C7524694421003E4CB1 /* alivcffmpeg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = alivcffmpeg.framework; sourceTree = "<group>"; };
+		188D1C7624694421003E4CB1 /* AliyunPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunPlayer.framework; sourceTree = "<group>"; };
+		188D1C7724694421003E4CB1 /* artpSource.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = artpSource.framework; sourceTree = "<group>"; };
+		188D1C7824694421003E4CB1 /* AliyunMediaDownloader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunMediaDownloader.framework; sourceTree = "<group>"; };
+		188D1C88246945A6003E4CB1 /* FDMPlayerControl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FDMPlayerControl-Bridging-Header.h"; sourceTree = "<group>"; };
 		18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerGestureControl.swift; sourceTree = "<group>"; };
-		18CF6B152466A71C00752B85 /* FullViewControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullViewControl.swift; sourceTree = "<group>"; };
 		1B589AE814D0F7DB181DB02D /* Pods-FDMPlayerControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.debug.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.debug.xcconfig"; sourceTree = "<group>"; };
 		B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FDMPlayerControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CACC7C602A6C5244CCC9AC /* Pods-FDMPlayerControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.release.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.release.xcconfig"; sourceTree = "<group>"; };
@@ -60,7 +92,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				188D1C8224694435003E4CB1 /* AlivcConan.framework in Frameworks */,
+				188D1C8424694437003E4CB1 /* artpSource.framework in Frameworks */,
+				188D1C7E24694432003E4CB1 /* AliyunMediaDownloader.framework in Frameworks */,
+				188D1C8024694433003E4CB1 /* alivcffmpeg.framework in Frameworks */,
 				270BD05E2170CF4D9E46713E /* Pods_FDMPlayerControl.framework in Frameworks */,
+				188D1C8624694442003E4CB1 /* AliyunPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,14 +144,15 @@
 		185BBE582456AB280093DF12 /* FDMPlayerControl */ = {
 			isa = PBXGroup;
 			children = (
+				188D1C7324694421003E4CB1 /* ARM_NO_BITCODE */,
 				185BBE6D2456AB8C0093DF12 /* PlayerControl */,
 				185BBE592456AB280093DF12 /* AppDelegate.swift */,
 				185BBE5D2456AB280093DF12 /* ViewController.swift */,
-				18CF6B152466A71C00752B85 /* FullViewControl.swift */,
 				185BBE5F2456AB280093DF12 /* Main.storyboard */,
 				185BBE622456AB280093DF12 /* Assets.xcassets */,
 				185BBE642456AB280093DF12 /* LaunchScreen.storyboard */,
 				185BBE672456AB280093DF12 /* Info.plist */,
+				188D1C88246945A6003E4CB1 /* FDMPlayerControl-Bridging-Header.h */,
 			);
 			path = FDMPlayerControl;
 			sourceTree = "<group>";
@@ -149,6 +187,18 @@
 				18C09D242459200F00C29D3A /* CustomItem */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		188D1C7324694421003E4CB1 /* ARM_NO_BITCODE */ = {
+			isa = PBXGroup;
+			children = (
+				188D1C7424694421003E4CB1 /* AlivcConan.framework */,
+				188D1C7524694421003E4CB1 /* alivcffmpeg.framework */,
+				188D1C7624694421003E4CB1 /* AliyunPlayer.framework */,
+				188D1C7724694421003E4CB1 /* artpSource.framework */,
+				188D1C7824694421003E4CB1 /* AliyunMediaDownloader.framework */,
+			);
+			path = ARM_NO_BITCODE;
 			sourceTree = "<group>";
 		};
 		18C09D242459200F00C29D3A /* CustomItem */ = {
@@ -197,6 +247,7 @@
 				185BBE532456AB280093DF12 /* Frameworks */,
 				185BBE542456AB280093DF12 /* Resources */,
 				6505620CE486A7DC18719157 /* [CP] Embed Pods Frameworks */,
+				188D1C6A24694004003E4CB1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,6 +270,7 @@
 				TargetAttributes = {
 					185BBE552456AB280093DF12 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -306,7 +358,6 @@
 				1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */,
 				1805C9142456CDF300254818 /* FDMPlayerItemControl.swift in Sources */,
 				184B253E2458304400C2772A /* ImageConfig.swift in Sources */,
-				18CF6B162466A71C00752B85 /* FullViewControl.swift in Sources */,
 				1848C7342464E47200E16EBC /* FDMGcdTimer.swift in Sources */,
 				1844CB9A24664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift in Sources */,
 				185BBE5E2456AB280093DF12 /* ViewController.swift in Sources */,
@@ -459,9 +510,15 @@
 			baseConfigurationReference = 1B589AE814D0F7DB181DB02D /* Pods-FDMPlayerControl.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FDMPlayerControl/FDMPlayerControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 75C84DSWC2;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FDMPlayerControl/ARM_NO_BITCODE",
+				);
 				INFOPLIST_FILE = FDMPlayerControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,8 +527,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FDM.FDMPlayerControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FDMPlayerControl/FDMPlayerControl-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Debug;
 		};
@@ -480,9 +540,15 @@
 			baseConfigurationReference = E9CACC7C602A6C5244CCC9AC /* Pods-FDMPlayerControl.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FDMPlayerControl/FDMPlayerControl.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 75C84DSWC2;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FDMPlayerControl/ARM_NO_BITCODE",
+				);
 				INFOPLIST_FILE = FDMPlayerControl/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -491,8 +557,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = FDM.FDMPlayerControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FDMPlayerControl/FDMPlayerControl-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s";
 			};
 			name = Release;
 		};

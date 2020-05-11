@@ -31,6 +31,10 @@ class FDMGcdTimer: NSObject {
         gcdTimer?.resume()
     }
     
+    func suspend() {
+        gcdTimer?.suspend()
+    }
+    
     func cancel() {
         gcdTimer?.cancel()
         gcdTimer = nil

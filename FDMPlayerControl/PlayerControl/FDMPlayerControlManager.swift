@@ -41,9 +41,28 @@ extension FDMPlayerControlManager {
     func setFullScreenStatus(_ status: Bool) {
         fullScreenStatus = status
         if status {
+            setFullScreen(.landscapeLeft)
             NotificationCenter.default.post(name: NSNotification.Name.init(fullScreenNotificationName), object: nil)
         }else{
+            setFullScreen(.portrait)
             NotificationCenter.default.post(name: NSNotification.Name.init(miniScreenNotificationName), object: nil)
+        }
+    }
+    
+    /// 手动设置全屏
+    func setFullScreen(_ orientation: UIDeviceOrientation) {
+        let orientation = orientation.rawValue
+        UIDevice.current.setValue(orientation, forKey: "orientation")
+    }
+    
+    /// 隐藏或隐藏边缘控制器
+    func sethiddenControls(_ state: Bool) {
+        for control in topBarControlAry ?? [] {
+            control.isHidden = state
+        }
+        
+        for control in bottomBarControlAry ?? [] {
+            control.isHidden = state
         }
     }
 }
