@@ -113,16 +113,18 @@ class FDMSpaceItemControl: FDMPlayerItemControl {
 
 //MARK: ProgressItem
 class FDMProgressItemControl: FDMPlayerItemControl {
-    let item = UISlider()
+    let item = FDMPlayerProgressView()
     
-    var itemChangeValueBlock: ((UISlider,Float)->())?
+    var itemChangeValueBlock: ((FDMPlayerProgressView,CGFloat,UIGestureRecognizer.State)->())?
     
     /// ProgressItem - 初始化 - 固定Progress宽度
     init(size: CGSize) {
         super.init(itemType: .FixedItem, customItem: item)
         self.itemSize = size
         
-        item.addTarget(self, action: #selector(self.itemChangeValue(sender:)), for: .valueChanged)
+        item.changeValueBlock = {[weak self] value, state in
+            self?.itemChangeValueBlock?(self!.item,value,state)
+        }
     }
     
     /// ProgressItem - 初始化 - 自适应Progress宽度
@@ -130,22 +132,8 @@ class FDMProgressItemControl: FDMPlayerItemControl {
         super.init(itemType: .AutoItem, customItem: item)
         self.itemSize = CGSize(width: 0, height: height)
         
-        item.addTarget(self, action: #selector(self.itemChangeValue(sender:)), for: .valueChanged)
-    }
-    
-    /// ProgressItem - 初始化 - 自适应Progress宽度
-    init(_ thumbImage: UIImage?,_ miniColor: UIColor?,_ maxColor: UIColor?,_ height: CGFloat) {
-        super.init(itemType: .AutoItem, customItem: item)
-        self.itemSize = CGSize(width: 0, height: height)
-        
-        item.setThumbImage(thumbImage, for: .normal)
-        item.minimumTrackTintColor = miniColor
-        item.maximumTrackTintColor = maxColor
-        item.addTarget(self, action: #selector(self.itemChangeValue(sender:)), for: .valueChanged)
-    }
-    
-    /// 滑动Item
-    @objc func itemChangeValue(sender: UISlider) {
-        itemChangeValueBlock?(sender,sender.value)
+        item.changeValueBlock = {[weak self] value, state in
+            self?.itemChangeValueBlock?(self!.item,value,state)
+        }
     }
 }

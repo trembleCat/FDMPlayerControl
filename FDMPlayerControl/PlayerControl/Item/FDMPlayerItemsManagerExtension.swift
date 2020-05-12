@@ -62,15 +62,14 @@ extension FDMPlayerItemsManager {
     
     /// 创建进度条
     func createProgressItem() -> FDMProgressItemControl {
-        let thumbImage = UIImage(named: ImageConfig.shared.player_mini_thumb)
-        let playerProgressItem = FDMProgressItemControl(thumbImage, .purple, .gray, 20)
-        
+        let playerProgressItem = FDMProgressItemControl(progressHeight: 15)
         return playerProgressItem
     }
     
     /// 创建时间
     func createTimeItem() -> FDMLabelItemControl {
         let playerTimeItem = FDMLabelItemControl(text: "00:00 / 00:00", color: .white, font: UIFont.systemFont(ofSize: 13))
+        playerTimeItem.item.textAlignment = .right
         
         return playerTimeItem
     }

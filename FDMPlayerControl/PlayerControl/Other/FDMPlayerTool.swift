@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: 定时器
 class FDMGcdTimer: NSObject {
     
     var gcdTimer: DispatchSourceTimer?
@@ -38,5 +39,43 @@ class FDMGcdTimer: NSObject {
     func cancel() {
         gcdTimer?.cancel()
         gcdTimer = nil
+    }
+}
+
+//MARK: 时间转换
+class FDMTimeConversion: NSObject {
+    
+    /// 时间单位
+    enum TimerStringType {
+        case second
+        case minute
+        case hour
+    }
+    
+    /// 毫秒转换为视频时间字符串 type: 返回单位
+    class func millisecondToTimerString(_ millisecond: Int64, type: TimerStringType) -> String {
+        var second = millisecond / 1000
+        var minute = second / 60
+        let hour = minute / 60
+        
+        if type == .second {
+            return String(format: "%02ld",lroundf(Float(second)))
+        }else if type == .minute {
+            if minute > 0 {
+                second = second % 60
+            }
+            
+            return String(format: "%02ld:%02ld",minute,lroundf(Float(second)))
+        }else {
+            if minute > 0 {
+                second = second % 60
+            }
+            
+            if hour > 0 {
+                minute = minute % 60
+            }
+            
+            return String(format: "%02ld:%02ld:%02ld",hour,minute,lroundf(Float(second)))
+        }
     }
 }

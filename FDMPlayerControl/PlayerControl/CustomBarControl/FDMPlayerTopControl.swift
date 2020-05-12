@@ -30,8 +30,8 @@ class FDMPlayerTopControl: FDMPlayerBarControl {
         onFullScreenAction()
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init() {
+        super.init()
         
         createUI()
         offFullScreen()

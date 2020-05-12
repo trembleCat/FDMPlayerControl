@@ -14,7 +14,7 @@
 		1844CB9A24664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CB9924664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift */; };
 		1844CB9D246659A800D8A88F /* FDMPlayerBottomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CB9B246659A800D8A88F /* FDMPlayerBottomControl.swift */; };
 		1844CB9E246659A800D8A88F /* FDMPlayerTopControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1844CB9C246659A800D8A88F /* FDMPlayerTopControl.swift */; };
-		1848C7342464E47200E16EBC /* FDMGcdTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848C7332464E47200E16EBC /* FDMGcdTimer.swift */; };
+		1848C7342464E47200E16EBC /* FDMPlayerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848C7332464E47200E16EBC /* FDMPlayerTool.swift */; };
 		1848C736246538BE00E16EBC /* FDMPlayerControlManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */; };
 		184B253C24582F3F00C2772A /* PlayerImage.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184B253B24582F3F00C2772A /* PlayerImage.xcassets */; };
 		184B253E2458304400C2772A /* ImageConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184B253D2458304400C2772A /* ImageConfig.swift */; };
@@ -34,6 +34,7 @@
 		188D1C8624694442003E4CB1 /* AliyunPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7624694421003E4CB1 /* AliyunPlayer.framework */; };
 		188D1C8724694442003E4CB1 /* AliyunPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 188D1C7624694421003E4CB1 /* AliyunPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18C09D282459303E00C29D3A /* FDMPlayerGestureControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */; };
+		18D6E5DA246A6FEE00055FD0 /* FDMPlayerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D6E5D9246A6FEE00055FD0 /* FDMPlayerProgressView.swift */; };
 		270BD05E2170CF4D9E46713E /* Pods_FDMPlayerControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +64,7 @@
 		1844CB9924664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerItemsManagerExtension.swift; sourceTree = "<group>"; };
 		1844CB9B246659A800D8A88F /* FDMPlayerBottomControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMPlayerBottomControl.swift; sourceTree = "<group>"; };
 		1844CB9C246659A800D8A88F /* FDMPlayerTopControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMPlayerTopControl.swift; sourceTree = "<group>"; };
-		1848C7332464E47200E16EBC /* FDMGcdTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMGcdTimer.swift; sourceTree = "<group>"; };
+		1848C7332464E47200E16EBC /* FDMPlayerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FDMPlayerTool.swift; sourceTree = "<group>"; };
 		1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerControlManager.swift; sourceTree = "<group>"; };
 		184B253B24582F3F00C2772A /* PlayerImage.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = PlayerImage.xcassets; sourceTree = "<group>"; };
 		184B253D2458304400C2772A /* ImageConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageConfig.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		188D1C7824694421003E4CB1 /* AliyunMediaDownloader.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AliyunMediaDownloader.framework; sourceTree = "<group>"; };
 		188D1C88246945A6003E4CB1 /* FDMPlayerControl-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FDMPlayerControl-Bridging-Header.h"; sourceTree = "<group>"; };
 		18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerGestureControl.swift; sourceTree = "<group>"; };
+		18D6E5D9246A6FEE00055FD0 /* FDMPlayerProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDMPlayerProgressView.swift; sourceTree = "<group>"; };
 		1B589AE814D0F7DB181DB02D /* Pods-FDMPlayerControl.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.debug.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.debug.xcconfig"; sourceTree = "<group>"; };
 		B4D5ECA1460143ED32F781D4 /* Pods_FDMPlayerControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FDMPlayerControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9CACC7C602A6C5244CCC9AC /* Pods-FDMPlayerControl.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FDMPlayerControl.release.xcconfig"; path = "Target Support Files/Pods-FDMPlayerControl/Pods-FDMPlayerControl.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,16 +106,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1843AD7C245818DE00F0E551 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */,
-				1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */,
-				1805C9132456CDF300254818 /* FDMPlayerItemControl.swift */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		1844CB9F246659BE00D8A88F /* CustomBarControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,8 +153,10 @@
 			isa = PBXGroup;
 			children = (
 				1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */,
+				18D6E5AB246A439500055FD0 /* BaseControl */,
 				1844CB9F246659BE00D8A88F /* CustomBarControl */,
-				185BBE7C2456BAC80093DF12 /* View */,
+				185BBE7C2456BAC80093DF12 /* Item */,
+				18D6E5AC246A441F00055FD0 /* CustomView */,
 				18D104CE24655D4D001B32B4 /* Other */,
 				18D104C824655992001B32B4 /* Image */,
 			);
@@ -178,15 +172,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		185BBE7C2456BAC80093DF12 /* View */ = {
+		185BBE7C2456BAC80093DF12 /* Item */ = {
 			isa = PBXGroup;
 			children = (
 				1844CB97246648F500D8A88F /* FDMPlayerItemsManager.swift */,
 				1844CB9924664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift */,
-				1843AD7C245818DE00F0E551 /* Base */,
 				18C09D242459200F00C29D3A /* CustomItem */,
 			);
-			path = View;
+			path = Item;
 			sourceTree = "<group>";
 		};
 		188D1C7324694421003E4CB1 /* ARM_NO_BITCODE */ = {
@@ -221,9 +214,27 @@
 		18D104CE24655D4D001B32B4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1848C7332464E47200E16EBC /* FDMGcdTimer.swift */,
+				1848C7332464E47200E16EBC /* FDMPlayerTool.swift */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		18D6E5AB246A439500055FD0 /* BaseControl */ = {
+			isa = PBXGroup;
+			children = (
+				18C09D272459303E00C29D3A /* FDMPlayerGestureControl.swift */,
+				1805C9112456BDA700254818 /* FDMPlayerBarControl.swift */,
+				1805C9132456CDF300254818 /* FDMPlayerItemControl.swift */,
+			);
+			path = BaseControl;
+			sourceTree = "<group>";
+		};
+		18D6E5AC246A441F00055FD0 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				18D6E5D9246A6FEE00055FD0 /* FDMPlayerProgressView.swift */,
+			);
+			path = CustomView;
 			sourceTree = "<group>";
 		};
 		F115A0B2C5DFCCA95DC4FDAD /* Pods */ = {
@@ -358,7 +369,8 @@
 				1805C9122456BDA700254818 /* FDMPlayerBarControl.swift in Sources */,
 				1805C9142456CDF300254818 /* FDMPlayerItemControl.swift in Sources */,
 				184B253E2458304400C2772A /* ImageConfig.swift in Sources */,
-				1848C7342464E47200E16EBC /* FDMGcdTimer.swift in Sources */,
+				1848C7342464E47200E16EBC /* FDMPlayerTool.swift in Sources */,
+				18D6E5DA246A6FEE00055FD0 /* FDMPlayerProgressView.swift in Sources */,
 				1844CB9A24664B2300D8A88F /* FDMPlayerItemsManagerExtension.swift in Sources */,
 				185BBE5E2456AB280093DF12 /* ViewController.swift in Sources */,
 				1844CB98246648F500D8A88F /* FDMPlayerItemsManager.swift in Sources */,

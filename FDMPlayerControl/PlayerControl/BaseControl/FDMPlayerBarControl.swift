@@ -39,9 +39,8 @@ class FDMPlayerBarControl: UIView {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
+    init() {
+        super.init(frame: CGRect.zero)
         self.addSubview(contentView)
     }
     
