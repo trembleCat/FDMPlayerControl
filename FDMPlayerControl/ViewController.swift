@@ -15,10 +15,13 @@ class ViewController: UIViewController {
     let aliplayer = AliPlayer()
     let playerTimer = FDMGcdTimer()
     
+    let barHeight: CGFloat = 20
+    let playerHeight: CGFloat = 285
+    
     // ControlManager
     let playerControlManager = FDMPlayerControlManager()
     
-    // 状态栏
+    // topStatusBarControl
     let playerStatusBar = FDMPlayerBarControl()
     // topControl
     let playerTopControl = FDMPlayerTopControl()
@@ -39,14 +42,13 @@ class ViewController: UIViewController {
         /* 1.创建视频播放器 */
         self.view.addSubview(playerView)
         aliplayer?.playerView = playerView
-//        aliplayer?.isLoop = true
         aliplayer?.delegate = self
         AliPlayer.setEnableLog(false)
         playerView.backgroundColor = .black
         playerView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(0)
-            make.height.equalTo(285)
+            make.height.equalTo(playerHeight)
         }
         
         /* 2.视频播放器添加playerControlManager */
@@ -57,6 +59,7 @@ class ViewController: UIViewController {
         
         createTopControl()
         createBottomContro()
+        createPlayerBackgroundImage()
         
         let playerSource = AVPUrlSource()
         playerSource.url(with: "http://vfx.mtime.cn/Video/2019/02/04/mp4/190204084208765161.mp4")
@@ -67,12 +70,13 @@ class ViewController: UIViewController {
     /// 创建topBarControl
     func createTopControl() {
         // 设置状态栏Bar高度
-        playerStatusBar.barHeight = 20
-        // 设置manager的topBarControlAry
-        playerControlManager.topBarControlAry = [playerStatusBar,playerTopControl]
+        playerStatusBar.barHeight = barHeight
         
         playerTopControl.delegate = self
         playerTopControl.items.titleItem.item.text = "惊奇队长"
+        
+        // 设置manager的topBarControlAry
+        playerControlManager.topBarControlAry = [playerStatusBar,playerTopControl]
     }
     
     /// 创建bottomBarControl
@@ -81,10 +85,18 @@ class ViewController: UIViewController {
         playerControlManager.bottomBarControlAry = [playerBottomControl]
         playerBottomControl.delegate = self
         
-        playerBottomProgressControl.itemSpacing = 2
+        playerBottomProgressControl.itemSpacing = 0
         playerBottomProgressControl.barHeight = 15
     }
-
+    
+    /// 创建背景
+    func createPlayerBackgroundImage() {
+        let topImage = UIImage(named: ImageConfig.shared.video_topShadow)
+        let bottomImage = UIImage(named: ImageConfig.shared.video_bottomShadow)
+        
+        playerControlManager.addTopBackgroundView(UIImageView(image: topImage), height: 60)
+        playerControlManager.addBottomBackgroundView(UIImageView(image: bottomImage), height: 40)
+    }
 }
 
 //MARK: TopControlDelegate
@@ -146,7 +158,7 @@ extension ViewController: FDMPlayerBottomControlDelegate {
         playerView.snp.remakeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalToSuperview().offset(0)
-            make.height.equalTo(240)
+            make.height.equalTo(playerHeight)
         }
         
         playerControlManager.setFullScreenStatus(false)

@@ -153,8 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				1848C735246538BE00E16EBC /* FDMPlayerControlManager.swift */,
-				18D6E5AB246A439500055FD0 /* BaseControl */,
 				1844CB9F246659BE00D8A88F /* CustomBarControl */,
+				18D6E5AB246A439500055FD0 /* BaseControl */,
 				185BBE7C2456BAC80093DF12 /* Item */,
 				18D6E5AC246A441F00055FD0 /* CustomView */,
 				18D104CE24655D4D001B32B4 /* Other */,

@@ -40,8 +40,7 @@ class FDMPlayerBottomControl: FDMPlayerBarControl {
     
     override init() {
         super.init()
-        
-        createUI()
+    
         offFullScreen()
     }
     
@@ -67,11 +66,6 @@ extension FDMPlayerBottomControl {
 
 //MARK: UI + Action
 extension FDMPlayerBottomControl {
-    private func createUI() {
-        /* 添加item */
-        let backgroundImage = UIImage(named: ImageConfig.shared.video_bottomShadow)
-        self.backgroundView = UIImageView(image: backgroundImage)
-    }
     
     /// 添加开启全屏时的监听
     private func onFullScreenAction() {

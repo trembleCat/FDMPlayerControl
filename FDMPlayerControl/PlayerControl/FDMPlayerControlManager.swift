@@ -17,12 +17,12 @@ let fullScreenNotificationName = "FDMPlayerFullScreen"
 let miniScreenNotificationName = "FDMPlayerMiniScreen"
 
 class FDMPlayerControlManager: UIView {
+    private(set) var fullScreenStatus = false
+    
     let gestureControl = FDMPlayerGestureControl()
     
-    var topBarControlAry: [FDMPlayerBarControl]? { didSet { addBarControl() } }
-    var bottomBarControlAry: [FDMPlayerBarControl]? { didSet { addBarControl() } }
-    
-    private(set) var fullScreenStatus = false
+    var topBarControlAry: [FDMPlayerBarControl]? { didSet { addTopBarControl() } }
+    var bottomBarControlAry: [FDMPlayerBarControl]? { didSet { addBottomBarControl() } }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,29 +41,37 @@ extension FDMPlayerControlManager {
     func setFullScreenStatus(_ status: Bool) {
         fullScreenStatus = status
         if status {
-            setFullScreen(.landscapeLeft)
+            setScreenOrientation(.landscapeLeft)
             NotificationCenter.default.post(name: NSNotification.Name.init(fullScreenNotificationName), object: nil)
         }else{
-            setFullScreen(.portrait)
+            setScreenOrientation(.portrait)
             NotificationCenter.default.post(name: NSNotification.Name.init(miniScreenNotificationName), object: nil)
         }
     }
     
-    /// 手动设置全屏
-    func setFullScreen(_ orientation: UIDeviceOrientation) {
-        let orientation = orientation.rawValue
-        UIDevice.current.setValue(orientation, forKey: "orientation")
-    }
-    
     /// 隐藏或隐藏边缘控制器
     func sethiddenControls(_ state: Bool) {
-        for control in topBarControlAry ?? [] {
-            control.isHidden = state
-        }
-        
-        for control in bottomBarControlAry ?? [] {
-            control.isHidden = state
-        }
+        gestureControl.setHiddenControls(state)
+    }
+    
+    /// 添加顶部背景view
+    func addTopBackgroundView(_ bgView: UIView, height: CGFloat) {
+        gestureControl.addTopBackgroundView(bgView, height: height)
+    }
+    
+    /// 移除顶部背景view
+    func removeTopBackgroundView() {
+        gestureControl.removeTopBackgroundView()
+    }
+    
+    /// 添加底部背景View
+    func addBottomBackgroundView(_ bgView: UIView, height: CGFloat) {
+        gestureControl.addBottomBackgroundView(bgView, height: height)
+    }
+    
+    /// 移除底部背景View
+    func removeBottomBackgroundView() {
+        gestureControl.removeBottomBackgroundView()
     }
 }
 
@@ -72,48 +80,22 @@ extension FDMPlayerControlManager {
     private func createUI() {
         self.addSubview(gestureControl)
         
-        /* 手势控制器 */
-        gestureControl.translatesAutoresizingMaskIntoConstraints = false
         gestureControl.snp.makeConstraints { (make) in
-            make.left.right.bottom.top.equalToSuperview()
+            make.edges.equalToSuperview()
         }
     }
     
-    private func addBarControl() {
-        for barControl in gestureControl.subviews {
-            barControl.removeFromSuperview()
-        }
-        
-        var topHeight: CGFloat = 0
-        for topControl in topBarControlAry ?? [] {
-            gestureControl.addSubview(topControl)
-            
-            layoutTopBarControl(topControl, topHeight: topHeight)
-            topHeight += topControl.barHeight
-        }
-        
-        var bottomHeight: CGFloat = 0
-        for bottomControl in bottomBarControlAry ?? [] {
-            gestureControl.addSubview(bottomControl)
-            
-            layoutBottomBarControl(bottomControl, bottomHeight: bottomHeight)
-            bottomHeight += bottomControl.barHeight
-        }
+    private func addTopBarControl() {
+        gestureControl.topBarControlAry = topBarControlAry
     }
     
-    private func layoutTopBarControl(_ topControl: FDMPlayerBarControl, topHeight: CGFloat) {
-        topControl.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(topHeight)
-            make.height.equalTo(topControl.barHeight)
-        }
+    private func addBottomBarControl() {
+        gestureControl.bottomBarControlAry = bottomBarControlAry
     }
     
-    private func layoutBottomBarControl(_ bottomControl: FDMPlayerBarControl, bottomHeight: CGFloat) {
-        bottomControl.snp.makeConstraints { (make) in
-            make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-bottomHeight)
-            make.height.equalTo(bottomControl.barHeight)
-        }
+    /// 设置屏幕方向
+    private func setScreenOrientation(_ orientation: UIDeviceOrientation) {
+        let orientation = orientation.rawValue
+        UIDevice.current.setValue(orientation, forKey: "orientation")
     }
 }

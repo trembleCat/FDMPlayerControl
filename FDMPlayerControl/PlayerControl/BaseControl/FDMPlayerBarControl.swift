@@ -12,17 +12,10 @@ import UIKit
 class FDMPlayerBarControl: UIView {
     
     private let contentView = UIView()
+    private var backgroundView: UIView?
     
     /// Bar高度
     var barHeight: CGFloat = 40
-    
-    /// 背景View
-    var backgroundView: UIView? {
-        didSet{
-            guard backgroundView != nil else { return }
-            self.insertSubview(backgroundView!, at: 0)
-        }
-    }
     
     /// item间距
     var itemSpacing: CGFloat = 10 {
@@ -33,22 +26,21 @@ class FDMPlayerBarControl: UIView {
     }
     
     /// items
-    var itemAry: [FDMPlayerItemControl]? {
-        didSet{
-            refreshLayoutItems()
-        }
-    }
+    var itemAry: [FDMPlayerItemControl]? { didSet{ refreshLayoutItems() } }
     
     init() {
         super.init(frame: CGRect.zero)
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
     }
     
-    /// 初始化
+    
     init(itemAry: [FDMPlayerItemControl]) {
         self.itemAry = itemAry
         super.init(frame: CGRect.zero)
         
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(contentView)
         
         refreshLayoutItems()
@@ -58,23 +50,28 @@ class FDMPlayerBarControl: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 刷新Items布局
-    func refreshLayoutItems() {
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        layoutUI()
+    /// 添加背景View
+    func addBackgroundView(_ bgView: UIView) {
+        if backgroundView == nil {
+            backgroundView = bgView
+            self.insertSubview(bgView, at: 0)
+        }else{
+            removeBackgroundView()
+            addBackgroundView(bgView)
+        }
     }
     
     /// 移除背景View
     func removeBackgroundView() {
         guard backgroundView != nil else { return }
         backgroundView?.removeFromSuperview()
+        backgroundView = nil
     }
 }
 
 //MARK: UI
 extension FDMPlayerBarControl {
-    private func layoutUI() {
+    private func refreshLayoutItems() {
         for subview in contentView.subviews {
             subview.removeFromSuperview()
         }
@@ -183,7 +180,7 @@ extension FDMPlayerBarControl {
         super.layoutSubviews()
         
         contentView.snp.remakeConstraints { (make) in
-            make.left.top.right.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         guard backgroundView != nil else {return}

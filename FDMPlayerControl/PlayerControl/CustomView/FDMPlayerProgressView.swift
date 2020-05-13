@@ -10,20 +10,25 @@ import UIKit
 
 class FDMPlayerProgressView: UIView {
     
+    let thumbBGView = UIView()
     let thumbView = UIView()
     let miniView = UIView()
     let maxView = UIView()
     let loadingView = UIView()
     
+    var indent: CGFloat = 2
     var progressHeight: CGFloat = 3
     var maxColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
     var minColor = UIColor(red: 255/255, green: 105/255, blue: 180/255, alpha: 1.0)
     var loadColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1.0)
-    var thumbSize = CGSize(width: 10, height: 13)
+    var thumbBGSize = CGSize(width: 18, height: 18)
+    var thumbSize = CGSize(width: 10, height: 8)
     
     /// 修改进度回调
     var changeValueBlock: ((CGFloat,UIGestureRecognizer.State)->())?
     
+    private let leftBackView = UIView()
+    private let rightBackView = UIView()
     private(set) var loadValue: CGFloat = 0
     private(set) var miniValue: CGFloat = 0
     
@@ -82,21 +87,23 @@ extension FDMPlayerProgressView {
         self.addSubview(maxView)
         maxView.addSubview(loadingView)
         maxView.addSubview(miniView)
-        self.addSubview(thumbView)
+        self.addSubview(leftBackView)
+        self.addSubview(rightBackView)
+        self.addSubview(thumbBGView)
+        thumbBGView.addSubview(thumbView)
         
         /* 最大进度 */
         maxView.backgroundColor = maxColor
-        maxView.layer.cornerRadius = progressHeight * 0.5
         maxView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(indent)
+            make.right.equalToSuperview().offset(-indent)
             make.centerY.equalToSuperview()
             make.height.equalTo(progressHeight)
         }
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.thumbViewPanGesture(_:)))
-        thumbView.isUserInteractionEnabled = true
-        thumbView.addGestureRecognizer(panGesture)
+        thumbBGView.isUserInteractionEnabled = true
+        thumbBGView.addGestureRecognizer(panGesture)
     }
     
     override func layoutSubviews() {
@@ -123,14 +130,42 @@ extension FDMPlayerProgressView {
             make.width.equalTo(miniValue * progressWidth)
         }
         
-        /* 滑块 */
+        /* 背景滑块 */
+        thumbBGView.layer.cornerRadius = 2
+        thumbBGView.snp.remakeConstraints { (make) in
+            make.centerX.equalTo(miniView.snp.right)
+            make.centerY.equalToSuperview()
+            make.width.equalTo(thumbBGSize.width)
+            make.height.equalTo(thumbBGSize.height)
+        }
+        
+        /* 显示滑块 */
         thumbView.layer.cornerRadius = 2
         thumbView.backgroundColor = .white
         thumbView.snp.remakeConstraints { (make) in
-            make.centerX.equalTo(miniView.snp.right)
-            make.centerY.equalToSuperview()
+            make.center.equalToSuperview()
             make.width.equalTo(thumbSize.width)
             make.height.equalTo(thumbSize.height)
+        }
+        
+        /* 左侧进度背景 */
+        leftBackView.backgroundColor = minColor
+        leftBackView.layer.cornerRadius = progressHeight * 0.5
+        leftBackView.snp.remakeConstraints { (make) in
+            make.left.equalToSuperview()
+            make.right.equalTo(maxView.snp.left).offset(2)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(progressHeight)
+        }
+        
+        /* 右侧进度背景 */
+        rightBackView.backgroundColor = maxColor
+        rightBackView.layer.cornerRadius = progressHeight * 0.5
+        rightBackView.snp.remakeConstraints { (make) in
+            make.right.equalToSuperview()
+            make.left.equalTo(maxView.snp.right).offset(-2)
+            make.centerY.equalToSuperview()
+            make.height.equalTo(progressHeight)
         }
     }
 }
