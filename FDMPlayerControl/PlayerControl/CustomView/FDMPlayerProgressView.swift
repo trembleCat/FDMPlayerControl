@@ -21,7 +21,7 @@ class FDMPlayerProgressView: UIView {
     var maxColor = UIColor(red: 220/255, green: 220/255, blue: 220/255, alpha: 1.0)
     var minColor = UIColor(red: 255/255, green: 105/255, blue: 180/255, alpha: 1.0)
     var loadColor = UIColor(red: 169/255, green: 169/255, blue: 169/255, alpha: 1.0)
-    var thumbBGSize = CGSize(width: 18, height: 18)
+    var thumbBGSize = CGSize(width: 25, height: 25)
     var thumbSize = CGSize(width: 10, height: 8)
     
     /// 修改进度回调

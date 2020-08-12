@@ -28,7 +28,7 @@ class FDMPlayerGestureControl: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 隐藏或隐藏边缘控制器
+    /// 隐藏或隐藏边缘控制器  -- 增加回调
     func setHiddenControls(_ state: Bool) {
         for control in topBarControlAry ?? [] {
             hiddenBarControl(control: control, state: state)
